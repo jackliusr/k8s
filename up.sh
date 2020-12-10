@@ -1,11 +1,10 @@
 #!/bin/bash
 
-kind get clusters | grep -v '^kind$'
-
-if [ $? ]; then 
-  echo "no exist"
+result=$( kind get clusters | grep -E '^kind$')
+if [ -n "$result" ]; then 
+  echo "exist"
+else
+  echo "no exists"
   kind create cluster --config ./configs/$1-cluster.yaml
   source ./configs/$1-hook.sh
-else
-  echo "exists"
 fi 
