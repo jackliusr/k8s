@@ -1,0 +1,34 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs/upgrade
+    containerPath: /mnt/configs/upgrade
+- role: control-plane
+  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs/upgrade
+    containerPath: /mnt/configs/upgrade
+- role: control-plane
+  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs/upgrade
+    containerPath: /mnt/configs/upgrade
+- role: worker
+  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs/upgrade
+    containerPath: /mnt/configs/upgrade
+- role: worker
+  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs/upgrade
+    containerPath: /mnt/configs/upgrade
+networking:
+  # ref  https://alexbrand.dev/post/creating-a-kind-cluster-with-calico-networking/
+  # after the creation of the cluster, run kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
+  # kubectl -n kube-system set env daemonset/calico-node FELIX_IGNORELOOSERPF=true
+  disableDefaultCNI: true # disable kindnet
+  podSubnet: 192.168.0.0/16 # set to Calico's default subnet

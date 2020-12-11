@@ -18,3 +18,31 @@ up.sh will call kind with the cluster configuration to create the cluster if the
 
 . [clust-name]-cluster.yaml: mandate
 . [clust-name]-hook.sh:  optional
+
+== Labs
+
+=== Tasks
+
+Tasks in https://kubernetes.io/docs/tasks/
+
+==== Install Tools
+
+====  Administer a Cluster
+
+===== Administration with kubeadm
+
+====== Certificate Management with kubeadm
+
+====== Upgrading kubeadm clusters
+
+The following script will setup a HA cluster (3 masters + 2 workers + 1 load balancer). The repository packages.cloud.google.com is setup. and kubeadm is installed as 1.19.5.
+/root/.kube is correctly configured.
+
+[source, bash]
+----
+./up.sh upgrade
+----
+
+Enter the nodes by running docker exec.  Refer https://v1-19.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/ to for other upgrade steps. 
+
+docker exec -it kind-control-plane /bin/bash
