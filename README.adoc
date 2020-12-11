@@ -12,7 +12,7 @@ CKA and CKAD test environment support calico and flannel. The KIND cluster confi
 
 == Development
 
-up.sh will call kind with the cluster configuration to create the cluster if there isn't kind clusters named kind. after the creationof the cluste, up.sh will call the corresponding hook script if it exists under ./configs folder.
+up.sh will call kind with the cluster configuration to create the cluster if there isn't kind clusters named kind. after the creation of the cluste, up.sh will call the corresponding hook script if it exists under ./configs folder.
 
 === naming convention
 
