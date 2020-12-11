@@ -6,5 +6,7 @@ if [ -n "$result" ]; then
 else
   echo "no exists"
   kind create cluster --config ./configs/$1-cluster.yaml
-  source ./configs/$1-hook.sh
+  if [[ ./configs/$1-hook.sh ]]; then 
+     source ./configs/$1-hook.sh
+  fi
 fi 
