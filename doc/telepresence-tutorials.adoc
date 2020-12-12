@@ -1,0 +1,22 @@
+= Telepresence tutorials
+
+https://www.telepresence.io/
+
+Tutorials
+
+== Debug a Kubernetes service locally
+
+Steps: https://www.telepresence.io/tutorials/kubernetes
+
+Setup
+
+[source,bash]
+----
+./up.sh 2nodes
+----
+
+Notice:
+- change nodePort of hello-world service to 30080, type to NodePort
+- curl test:  curl localhost:8080
+
+
