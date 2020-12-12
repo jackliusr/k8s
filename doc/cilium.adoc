@@ -1,0 +1,15 @@
+= Cilium
+
+== Getting Started Using Kind
+
+https://docs.cilium.io/en/v1.9/gettingstarted/kind/
+
+Setup:
+
+[source, bash]
+----
+./up.sh cilium
+----
+
+Existing issues:
+cilium pod fail to start. I will investigate it later.

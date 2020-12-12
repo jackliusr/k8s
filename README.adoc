@@ -24,4 +24,5 @@ up.sh will call kind with the cluster configuration to create the cluster if the
 - link:doc/tasks.adoc[Kubernets Tasks]
 - link:doc/k8s-CKA-hands-on-challenges.adoc[Kubernetes CKA hands-on challenge]
 - link:doc/telepresence-tutorials.adoc[Telepresence Tutorials]
+- link:doc/cilium.adoc[Cilium]
 
