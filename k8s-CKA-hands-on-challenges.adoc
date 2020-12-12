@@ -1,0 +1,35 @@
+=== Kubernetes CKA hands-on challenge
+
+https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d
+
+==== Node Management
+
+env setup
+
+[source, bash]
+----
+./up.sh 2nodes-mgmt
+----
+
+Notices:
+
+. Use docker un/pause kind-control-plane/kind-worker instead vagrant resume/suspend
+. modify the exposed service as following
++
+[source, yaml]
+----
+apiVersion: v1
+kind: Service
+metadata:
+   name: httpd
+   spec:
+     ports:
+       -  nodePort: 30552
+          port: 80
+          protocol: TCP
+          targetPort: 80
+     selector:
+       run: httpd
+     type: NodePort
+----
+. curl localhost:8080 to test 

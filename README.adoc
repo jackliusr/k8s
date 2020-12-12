@@ -46,3 +46,6 @@ The following script will setup a HA cluster (3 masters + 2 workers + 1 load bal
 Enter the nodes by running docker exec.  Refer https://v1-19.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/ to for other upgrade steps. 
 
 docker exec -it kind-control-plane /bin/bash
+
+link:k8s-CAK-hands-on-challenges.ado[Kubernetes CKA hands-on challenge]
+
