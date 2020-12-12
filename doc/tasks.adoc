@@ -1,16 +1,16 @@
-=== Tasks
+= Tasks
 
 Tasks in https://kubernetes.io/docs/tasks/
 
-==== Install Tools
+== Install Tools
 
-====  Administer a Cluster
+===  Administer a Cluster
 
-===== Administration with kubeadm
+==== Administration with kubeadm
 
-====== Certificate Management with kubeadm
+===== Certificate Management with kubeadm
 
-====== Upgrading kubeadm clusters
+===== Upgrading kubeadm clusters
 
 The following script will setup a HA cluster (3 masters + 2 workers + 1 load balancer). The repository packages.cloud.google.com is setup. and kubeadm is installed as 1.19.5.
 /root/.kube is correctly configured.
@@ -23,4 +23,17 @@ The following script will setup a HA cluster (3 masters + 2 workers + 1 load bal
 Enter the nodes by running docker exec.  Refer https://v1-19.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/ to for other upgrade steps. 
 
 docker exec -it kind-control-plane /bin/bash
+
+== Access Applications in a Cluster
+
+=== Web UI (Dashboard)
+
+Steps to setup env
+. minikube start --embed-certs (in windows)
+. kubectl proxy (in windows)
+. cat /mnt/c/Users/jackl/.kube/config >  ~/.kube/config #in wsl
+. kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+. steps at https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
+. in windows 10, browse http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/cronjob?namespace=default
+ 
 
