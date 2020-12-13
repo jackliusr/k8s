@@ -29,6 +29,7 @@ docker exec -it kind-control-plane /bin/bash
 === Web UI (Dashboard)
 
 Steps to setup env
+
 . minikube start --embed-certs (in windows)
 . kubectl proxy (in windows)
 . cat /mnt/c/Users/jackl/.kube/config >  ~/.kube/config #in wsl
