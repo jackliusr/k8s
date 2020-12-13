@@ -1,4 +1,8 @@
 #!/bin/bash
+docker exec -d kind-control-plane /mnt/cni/cni-install.sh
+docker exec -d kind-worker/mnt/cni/cni-install.sh
+docker exec -d kind-worker2 /mnt/cni/cni-install.sh
+
 helm repo add cilium https://helm.cilium.io/
 docker pull cilium/cilium:v1.9.1
 kind load docker-image cilium/cilium:v1.9.1

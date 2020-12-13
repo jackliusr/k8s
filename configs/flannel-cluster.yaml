@@ -14,4 +14,6 @@ nodes:
   - hostPath: /home/jack/prjs/kind-configs/configs/cni
     containerPath: /mnt/cni
 networking:
-  disableDefaultCNI: true
+  disableDefaultCNI: true # disable kindnet
+  # If kubeadm is used, then pass --pod-network-cidr=10.244.0.0/16 to kubeadm init to ensure that the podCIDR is set.
+  podSubnet: 10.244.0.0/16 
