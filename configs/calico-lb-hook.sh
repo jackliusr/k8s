@@ -5,6 +5,9 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 # On first install only
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+# docker network inspect kind | jq '.[0].IPAM.Config[0].Subnet' 
+#    127.18.0.0/16
+# so reserver the range 172.18.255.1-172.18.255.250 for load balancer service
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
@@ -17,7 +20,7 @@ data:
     - name: default
       protocol: layer2
       addresses:
-      - 172.17.255.1-172.17.255.250
+      - 172.18.255.1-172.18.255.250
 EOF
 
 
