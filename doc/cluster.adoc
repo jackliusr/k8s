@@ -1,0 +1,63 @@
+= clusters
+
+== oneliner to get the cluster
+
+[source, bash]
+----
+find . -name '*-cluster.yaml' | sed -e 's/\.\/configs\///' -e 's/-cluster\.yaml//' -e 's/-/ /g'
+----
+
+== cluster tables
+
+.Clusters
+|===
+|cluster | configuration | feature | purpose
+| upgrade
+| lb + 3 master + 2 worker
+| kubernetes v1.18.8 cluster, kubeadm v1.19.5
+| practice upgrading cluster
+
+
+| 2nodes
+| 1 master + 1 worker
+| hostPort 8080 -> container: 30080
+| simple cluster for quick practice
+
+
+| 2nodes mgmt
+| 1 master + 1 worker
+| hostPort 8080 -> containerPort : 30553
+| simple cluster for quick practice. later will merge with 2nodes
+
+
+| flannel
+| 1 master + 2 workers
+| flannel cni
+| practice scheduling
+
+
+| cilium 
+| 1 master + 2 workers
+| cilium
+| practice cilium install and troubleshooting
+
+| calico lb 
+| 1 master + 2 worker
+| calico + metallb
+| practice LoadBalancer and network policy
+
+| calico 
+| 1 master + 2 workers
+| calico cni
+| practice network policy
+
+| all api 
+| 1 master + 2 workers
+| enable all apis
+| practice alpha features
+
+| metrics
+| 1 master + 1 worker
+| metrics server
+| practice features such as HPA etc metrics related
+|===

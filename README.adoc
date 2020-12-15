@@ -19,6 +19,10 @@ up.sh will call kind with the cluster configuration to create the cluster if the
 . [clust-name]-cluster.yaml: mandate
 . [clust-name]-hook.sh:  optional
 
+== Clusters
+
+link:doc/cluster.adoc[Clusters and their configuration features and purposes]
+
 == Labs
 
 - link:doc/tasks.adoc[Kubernets Tasks]
