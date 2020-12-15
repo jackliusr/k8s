@@ -5,6 +5,8 @@ nodes:
   extraMounts:
   - hostPath: /home/jack/prjs/kind-configs/configs/cni
     containerPath: /mnt/cni
+  - hostPath: /home/jack/prjs/kind-configs/configs
+    containerPath: /mnt/configs
 - role: worker
   extraMounts:
   - hostPath: /home/jack/prjs/kind-configs/configs/cni

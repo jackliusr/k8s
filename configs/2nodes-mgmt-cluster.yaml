@@ -2,6 +2,9 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
+  extraMounts:
+  - hostPath: /home/jack/prjs/kind-configs/configs
+    containerPath: /mnt/configs
 - role: worker
   extraPortMappings:
   - containerPort: 30552 
