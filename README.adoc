@@ -3,6 +3,10 @@ my KIND configurations for different practices
 
 CKA and CKAD test environment support calico and flannel. The KIND cluster configrations will be added first.
 
+== Prerequisites
+
+Docker, kind and helm are installed at your machine
+
 == Usage
 
 [source,bash]

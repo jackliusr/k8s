@@ -7,7 +7,7 @@ nodes:
     kind: KubeletConfiguration
     serverTLSBootstrap: true
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
   extraPortMappings:

@@ -4,27 +4,27 @@ nodes:
 - role: control-plane
   image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: control-plane
   image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: control-plane
   image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
   image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
   image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 networking:
   # ref  https://alexbrand.dev/post/creating-a-kind-cluster-with-calico-networking/

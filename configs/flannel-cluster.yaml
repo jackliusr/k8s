@@ -3,17 +3,17 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs/cni
+  - hostPath: ./configs/cni
     containerPath: /mnt/cni
-  - hostPath: /home/jack/prjs/kind-configs/configs
+  - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs/cni
+  - hostPath: ./configs/cni
     containerPath: /mnt/cni
 - role: worker
   extraMounts:
-  - hostPath: /home/jack/prjs/kind-configs/configs/cni
+  - hostPath: ./configs/cni
     containerPath: /mnt/cni
 networking:
   disableDefaultCNI: true # disable kindnet
