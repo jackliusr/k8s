@@ -33,4 +33,5 @@ link:doc/cluster.adoc[Clusters and their configuration features and purposes]
 - link:doc/k8s-CKA-hands-on-challenges.adoc[Kubernetes CKA hands-on challenge]
 - link:doc/telepresence-tutorials.adoc[Telepresence Tutorials]
 - link:doc/cilium.adoc[Cilium]
+- link:doc/Service_Catalog_Installation.adoc[Service Catalog Walkthrough]
 

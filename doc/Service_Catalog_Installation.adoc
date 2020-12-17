@@ -1,0 +1,56 @@
+= Service Catalog Installation
+
+Service Catalog document site mixes up different versions without explicitly version information.  I noted the procedure I installed.
+
+
+https://github.com/kubernetes-sigs/service-catalog/tree/master/docs
+
+
+== Version Information
+
+.Versions
+|===
+| Component | Version
+| kubernetes
+| 1.19
+
+| helm
+| v3.4.0
+
+| svcat
+| v0.3.1
+|===
+
+
+== Installation
+
+. kubectl create namespace catalog
+. helm install catalog svc-cat/catalog --namespace catalog
+
+== Walkthrough
+
+https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/walkthrough.md
+
+. Installing the minibroker Server
++
+----
+[source, bash]
+----
+kubectl create namespace minibroker 
+helm repo add minibroker https://minibroker.blob.core.windows.net/charts
+helm install  minibroker --namespace minibroker minibroker/minibroker
+----
+  except the first step. other steps can follow the instructions at https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/walkthrough.md
+----
++
+. Viewing ClusterServiceClasses and ClusterServicePlans
+. Creating a New ServiceInstance
+. Requesting a ServiceBinding to use the ServiceInstance
+. Deleting the ServiceBinding
+. Deleting the ServiceInstance
+. Deleting the ClusterServiceBroker
+. Final Cleanup
+
+== Reference
+
+https://svc-cat.io/docs
