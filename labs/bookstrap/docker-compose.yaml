@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  master:
+    image: "kindest/node:v1.19.4"
+    privileged: true
+  worker1:
+    image: "kindest/node:v1.19.4"
+    privileged: true
+  worker2:
+    image: "kindest/node:v1.19.4"
+    privileged: true
