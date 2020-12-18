@@ -1,15 +1,15 @@
 = clusters
 
-== oneliner to get the cluster
+== oneliner to get the clusters
 
 [source, bash]
 ----
 find . -name '*-cluster.yaml' | sed -e 's/\.\/configs\///' -e 's/-cluster\.yaml//' -e 's/-/ /g'
 ----
 
-== cluster tables
+== KIND cluster tables
 
-.Clusters
+.Kind Clusters
 |===
 |cluster | configuration | feature | purpose
 | upgrade
@@ -61,3 +61,19 @@ find . -name '*-cluster.yaml' | sed -e 's/\.\/configs\///' -e 's/-cluster\.yaml/
 | metrics server
 | practice features such as HPA etc metrics related
 |===
+
+==  docker clusters
+
+Docker clusters are located at labs/bootstrap folder. Basically they are based on kindest/nodes and kindest/haproxy images, however they are not ready clusters. These make the practices easy and efficient. Vagrant takes too much times to launch a new env.
+
+.Docker clusters
+|===
+| cluster | configuration | purpose
+| 1node
+| 1 master
+| create 1 node kubernete cluster
+
+| lb
+| 1 lb, 3 masters, 2 workers
+| Creating Highly Available clusters with kubeadm
+===
