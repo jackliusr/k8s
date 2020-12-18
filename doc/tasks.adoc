@@ -65,3 +65,14 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl apply -f /kind/manifests/default-cni.yaml
 kubectl apply -f /kind/manifests/default-storage.yaml
 ----
+
+=== Verify
+
+[source, bash]
+----
+# make pods can be scheduled to master node
+kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl create deployment nginx --image=nginx --port 80
+kubectl expose deployment nginx 
+kubectl run tmp-$RANDOM --image=alpine --restart=Never --rm -it -- wget -qO- nginx
+----
