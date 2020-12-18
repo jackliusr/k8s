@@ -12,6 +12,8 @@ services:
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
+    environment:
+     - KUBECONFIG=/etc/kubernetes/admin.conf
     security_opt:
     - seccomp:unconfined
     - apparmor:unconfined

@@ -1,0 +1,163 @@
+version: "3.9"
+networks:
+  bootstrap:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.0.0/16"
+services:
+  haproxy:
+    hostname: kind-external-load-balancer
+    image: kindest/haproxy:v20200708-548e36db
+    ports:
+    - 6443
+    volumes:
+    - type: bind
+      source: ./configs/haproxy.cfg
+      target: /usr/local/etc/haproxy/haproxy.cfg
+    networks:
+      bootstrap:
+        ipv4_address: 172.19.0.100
+  kind-control-plane:
+    hostname: kind-control-plane 
+    image: "kindest/node:v1.19.4"
+    labels:
+      io.x-k8s.kind.role: control-plane 
+    privileged: true
+    environment:
+     - KUBECONFIG=/etc/kubernetes/admin.conf
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    ports:
+    - 127.0.0.1:39997:6443
+    networks:
+      bootstrap:
+        ipv4_address: 172.19.0.3
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: ./configs/kubeadm.conf
+        target: /kind/kubeadm.conf
+      - type: bind
+        source: ./configs/default-cni.yaml
+        target: /kind/manifests/default-cni.yaml
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
+  kind-control-plane2:
+    hostname: kind-control-plane2 
+    image: "kindest/node:v1.19.4"
+    labels:
+      io.x-k8s.kind.role: control-plane 
+    privileged: true
+    environment:
+     - KUBECONFIG=/etc/kubernetes/admin.conf
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    depends_on:
+      - kind-control-plane
+      - haproxy
+    ports:
+    - 6443
+    networks:
+      bootstrap:
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: ./configs/kubeadm.conf
+        target: /kind/kubeadm.conf
+      - type: bind
+        source: ./configs/default-cni.yaml
+        target: /kind/manifests/default-cni.yaml
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
+  kind-control-plane3:
+    hostname: kind-control-plane3 
+    image: "kindest/node:v1.19.4"
+    labels:
+      io.x-k8s.kind.role: control-plane 
+    privileged: true
+    environment:
+     - KUBECONFIG=/etc/kubernetes/admin.conf
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    depends_on:
+      - kind-control-plane
+      - haproxy
+    ports:
+    - 6443
+    networks:
+      bootstrap:
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: ./configs/kubeadm.conf
+        target: /kind/kubeadm.conf
+      - type: bind
+        source: ./configs/default-cni.yaml
+        target: /kind/manifests/default-cni.yaml
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
+  worker1:
+    hostname: worker1
+    image: "kindest/node:v1.19.4"
+    privileged: true
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    depends_on:
+      - kind-control-plane
+      - haproxy
+    ports:
+    - 6443
+    networks:
+      bootstrap:
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
+  worker2:
+    hostname: worker2
+    image: "kindest/node:v1.19.4"
+    privileged: true
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    depends_on:
+      - kind-control-plane
+      - haproxy
+    ports:
+    - 6443
+    networks:
+      bootstrap:
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
