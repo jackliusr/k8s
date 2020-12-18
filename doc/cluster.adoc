@@ -64,7 +64,7 @@ find . -name '*-cluster.yaml' | sed -e 's/\.\/configs\///' -e 's/-cluster\.yaml/
 
 ==  docker clusters
 
-Docker clusters are located at labs/bootstrap folder. Basically they are based on kindest/nodes and kindest/haproxy images, however they are not ready clusters. These make the practices easy and efficient. Vagrant takes too much times to launch a new env.
+Docker clusters are located at labs/bootstrap folder. Basically they are based on kindest/nodes and kindest/haproxy images, however they are not ready clusters. These make the practices easy and efficient. Vagrant takes too much time to launch a new env.
 
 .Docker clusters
 |===
