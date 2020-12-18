@@ -1,0 +1,37 @@
+version: "3.9"
+networks:
+  bootstrap:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.0.0/16"
+services:
+  kind-control-plane:
+    hostname: kind-control-plane 
+    image: "kindest/node:v1.19.4"
+    labels:
+      io.x-k8s.kind.role: control-plane 
+    privileged: true
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    ports:
+    - 127.0.0.1:39997:6443
+    networks:
+      bootstrap:
+        ipv4_address: 172.19.0.3
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /var
+      - type: bind
+        source: ./configs/kubeadm.conf
+        target: /kind/kubeadm.conf
+      - type: bind
+        source: ./configs/default-cni.yaml
+        target: /kind/manifests/default-cni.yaml
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true

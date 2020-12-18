@@ -38,3 +38,30 @@ Steps to setup env
 . in windows 10, browse http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/cronjob?namespace=default
  
 
+== Creating a cluster with kubeadm
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
+=== Environment:
+
+[source,bash]
+----
+cd labs/bootstrap
+docker-compose -f 1node.yaml up
+----
+
+=== Setup
+
+Due to kindnet and the whole environment running in docker, there are some limitations. Running the following commands to setup the node
+
+[source, bash]
+----
+docker exec -it bootstrap_kind-control-plane_1 /bin/sh
+#following commands are run in the above shell 
+kubeadm init  --ignore-preflight-errors=all --pod-network-cidr=10.240.0.0/16
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl apply -f /kind/manifests/default-cni.yaml
+kubectl apply -f /kind/manifests/default-storage.yaml
+----
