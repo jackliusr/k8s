@@ -1,4 +1,10 @@
+= Frequent used commands
+
+[source, bash]
+----
 kubeadm init --ignore-preflight-errors=all --config=/kind/kubeadm.conf --skip-token-print --v=6
-
-
 docker run  -d --privileged  --name test-$RANDOM kindest/node:v1.19.4
+
+# https://github.com/kubernetes-sigs/kind/blob/c4dd799081a105edf5b0e61ca9fd86c9fb83fbe2/pkg/cluster/internal/create/actions/kubeadminit/init.go
+kubeadm init  --skip-phases=preflight --config=/kind/kubeadm.conf --skip-token-print --v=6
+----
