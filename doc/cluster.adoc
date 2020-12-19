@@ -66,6 +66,8 @@ find . -name '*-cluster.yaml' | sed -e 's/\.\/configs\///' -e 's/-cluster\.yaml/
 
 Docker clusters are located at labs/bootstrap folder. Basically they are based on kindest/nodes and kindest/haproxy images, however they are not ready clusters. These make the practices easy and efficient. Vagrant takes too much time to launch a new env.
 
+There is a new way Kinder to create this kind of cluster  instead of docker-compose. Here is the link https://github.com/kubernetes/kubeadm/tree/master/kinder
+
 .Docker clusters
 |===
 | cluster | configuration | purpose
