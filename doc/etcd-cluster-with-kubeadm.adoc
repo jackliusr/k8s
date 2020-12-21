@@ -117,7 +117,6 @@ find /tmp/etcd/${HOST1} -name ca.key -type f -delete
 ----
 # as kubeadm is running etcd1, 
 cp /tmp/etcd/172.19.1.1/kubeadmcfg.yaml ~/kubeadmcfg.yaml
-cp -r /tmp/etcd/172.19.1.1/pki /etc/kubernetes/pki
 # Docker cp: unable to copy a file to the tmpfs inside the container
 # https://forums.docker.com/t/docker-cp-unable-to-copy-a-file-to-the-tmpfs-inside-the-container/26701
 cp -r /tmp/etcd /root/etcd
