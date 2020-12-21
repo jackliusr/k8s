@@ -1,0 +1,57 @@
+= Join a new woker into an existing cluster
+
+== Env
+
+Env:   ./up.sh calico-lb
+
+
+==  Start a new Workr
+
+[source, bash]
+----
+#start a new worker
+docker run --rm -it --network=kind --privileged  \
+    --add-host worker-new01:127.0.0.1 \
+        --name=worker-new01 kindest/node:v1.19.1 /bin/bash
+----
+
+== Get token/create a new token
+
+[source, bash]
+----
+#get token
+docker exec -it kind-control-plane kubeadm toke list
+----
+
+== Get discovery-token-ca-cert-hash
+
+[source, bash]
+----
+#get discovery-token-ca-cert-hash
+docker exec -it kind-control-plane openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+----
+
+== Join the new worker node
+
+[source, bash]
+----
+#join the new node
+kubeadm join 172.18.0.3:6443 \
+         --token abcdef.0123456789abcdef \
+                                          --discovery-token-ca-cert-hash sha256:304f8ab3ec35207f307efb5194ac829e6e58b6f116e4c37e461abb0f2ab8800e --ignore-preflight-errors=all
+----
+== Troubeshooting
+
+[source,bash]
+----
+#check node
+
+kubectl -n kube-system logs kube-proxy-vbqmx
+Error from server (BadRequest): container "kube-proxy" in pod "kube-proxy-vbqmx" is waiting to start: ContainerCreating
+
+journalctl -xeu kubelet --no-pager | grep -i error
+
+Dec 21 15:30:08 cea61ce44710 kubelet[373]: E1221 15:30:08.137651     373 driver-call.go:266] Failed to unmarshal output for command: init, output: "", error: unexpected end of JSON input
+Dec 21 15:30:08 cea61ce44710 kubelet[373]: W1221 15:30:08.137666     373 driver-call.go:149] FlexVolume: driver call failed: executable: /usr/libexec/kubernetes/kubelet-plugins/volume/exec/nodeagent~uds/uds, args: [init], error: fork/exec /usr/libexec/kubernetes/kubelet-plugins/volume/exec/nodeagent~uds/uds: no such file or directory, output: ""
+Dec 21 15:30:08 cea61ce44710 kubelet[373]: E1221 15:30:08.137675     373 plugins.go:734] Error dynamically probing plugins: Error creating Flexvolume plugin from directory nodeagent~uds, skipping. Error: unexpected end of JSON input
+----
