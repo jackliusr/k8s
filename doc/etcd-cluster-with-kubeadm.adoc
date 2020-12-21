@@ -1,0 +1,90 @@
+= Set up a High Availability etcd cluster with kubeadm
+
+==  Setting up the cluster
+
+docker environment: ../labs/bootstrap/etcd.yaml
+
+
+=== Configure the kubelet to be a service manager for etcd
+
+The purpose of this step is change kubelet to standalone mode
+
+As the enviroment is in docker, need to make somethings changes which different from step 1 at https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/
+
+Changes:
+
+. add: --fail-swap-on=false  --pod-manifest-path=/etc/kubernetes/manifests --container-runtime=remote   --container-runtime-endpoint=unix:///run/containerd/containerd.sock
+. remove:  --cgroup-driver=systemd
+
+[source.bash]
+----
+cat << EOF > /etc/systemd/system/kubelet.service.d/20-etcd-service-manager.conf
+[Service]
+ExecStart=
+#  Replace "systemd" with the cgroup driver of your container runtime. The default value in the kubelet is "cgroupfs".
+ExecStart=/usr/bin/kubelet --address=127.0.0.1  --fail-swap-on=false  --pod-manifest-path=/etc/kubernetes/manifests --container-runtime=remote   --container-runtime-endpoint=unix:///run/containerd/containerd.sock
+Restart=always
+EOF
+
+systemctl daemon-reload
+systemctl restart kubelet
+systemctl status kubelet
+----
+
+
+# Update HOST0, HOST1, and HOST2 with the IPs or resolvable names of your hosts
+export HOST0=172.19.1.1
+export HOST1=172.19.1.2
+export HOST2=172.19.1.3
+
+# Create temp directories to store files that will end up on other hosts.
+mkdir -p /tmp/etcd/${HOST0}/ /tmp/etcd/${HOST1}/ /tmp/etcd/${HOST2}/
+
+ETCDHOSTS=(${HOST0} ${HOST1} ${HOST2})
+NAMES=("infra0" "infra1" "infra2")
+
+
+kubeadm init phase certs etcd-ca
+
+kubeadm init phase certs etcd-server --config=/tmp/etcd/${HOST2}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config=/tmp/etcd/${HOST2}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config=/tmp/etcd/${HOST2}/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config=/tmp/etcd/${HOST2}/kubeadmcfg.yaml
+cp -R /etc/kubernetes/pki /tmp/etcd/${HOST2}/
+# cleanup non-reusable certificates
+find /etc/kubernetes/pki -not -name ca.crt -not -name ca.key -type f -delete
+
+kubeadm init phase certs etcd-server --config=/tmp/etcd/${HOST1}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config=/tmp/etcd/${HOST1}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config=/tmp/etcd/${HOST1}/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config=/tmp/etcd/${HOST1}/kubeadmcfg.yaml
+cp -R /etc/kubernetes/pki /tmp/etcd/${HOST1}/
+find /etc/kubernetes/pki -not -name ca.crt -not -name ca.key -type f -delete
+
+kubeadm init phase certs etcd-server --config=/tmp/etcd/${HOST0}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-peer --config=/tmp/etcd/${HOST0}/kubeadmcfg.yaml
+kubeadm init phase certs etcd-healthcheck-client --config=/tmp/etcd/${HOST0}/kubeadmcfg.yaml
+kubeadm init phase certs apiserver-etcd-client --config=/tmp/etcd/${HOST0}/kubeadmcfg.yaml
+# No need to move the certs because they are for HOST0
+
+# clean up certs that should not be copied off this host
+find /tmp/etcd/${HOST2} -name ca.key -type f -delete
+find /tmp/etcd/${HOST1} -name ca.key -type f -delete
+
+
+cp /tmp/etcd/172.19.1.1/kubeadmcfg.yaml ~/kubeadmcfg.yaml
+cp -r /tmp/etcd /root/etcd
+
+docker cp bootstrap_etcd1_1:/root/etcd .
+
+docker cp /home/jack/cert/etcd/172.19.1.2/kubeadmcfg.yaml bootstrap_etcd2_1:/root/kubeadmcfg.yaml
+docker cp /home/jack/cert/etcd/172.19.1.2/pki bootstrap_etcd2_1:/etc/kubernetes/pki
+
+docker cp /home/jack/cert/etcd/172.19.1.3/kubeadmcfg.yaml bootstrap_etcd3_1:/root/kubeadmcfg.yaml
+docker cp /home/jack/cert/etcd/172.19.1.3/pki bootstrap_etcd3_1:/etc/kubernetes/pki
+
+docker exec -it bootstrap_etcd1_1  kubeadm init phase etcd local --config=/root/kubeadmcfg.yaml
+docker exec -it bootstrap_etcd2_1  kubeadm init phase etcd local --config=/root/kubeadmcfg.yaml
+docker exec -it bootstrap_etcd3_1 kubeadm init phase etcd local --config=/root/kubeadmcfg.yaml
+
+
