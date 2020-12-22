@@ -151,5 +151,18 @@ docker exec -it bootstrap_etcd3_1 kubeadm init phase etcd local --config=/root/k
 
 === Optional: Check the cluster health
 
-TODO: how to do that inside docker using crictl?
-
+[source, bash]
+----
+docker exec -it bootstrap_etcd1_1 /bin/bash
+apt update && apt install -y wget vim less curl
+cd /tmp
+wget https://github.com/etcd-io/etcd/releases/download/v3.4.13/etcd-v3.4.13-linux-amd64.tar.gz
+tar xzvf etcd-v3.4.13-linux-amd64.tar.gz
+cp /tmp/etcd-v3.4.13-linux-amd64/etcdctl ~
+cd 
+./etcdctl \
+  --cert /etc/kubernetes/pki/etcd/peer.crt \
+  --key /etc/kubernetes/pki/etcd/peer.key \
+  --cacert /etc/kubernetes/pki/etcd/ca.crt \
+  --endpoints https://172.19.1.1:2379 endpoint health --cluster
+----
