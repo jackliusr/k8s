@@ -86,4 +86,5 @@ There is a new way Kinder to create this kind of cluster  instead of docker-comp
 | ld+etcd
 | haproxy + 3 masters + 2 workers + 3 etcd nodes
 | k8s ha cluster with external etcd cluster
+|
 ===
