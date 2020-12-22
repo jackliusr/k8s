@@ -10,10 +10,14 @@ Env:   ./up.sh calico-lb
 [source, bash]
 ----
 #start a new worker
-docker run --rm -it --network=kind --privileged  \
+docker run -d --network=kind --privileged  \
     --add-host worker-new01:127.0.0.1 \
+	--security-opt apparmor=unconfined,seccomp=unconfined \
+	--tmpfs=/tmp,/run \
+	--volume /lib/modules:/lib/modules \
+	-v /var \
     --name=worker-new01 \
-    kindest/node:v1.19.1 /bin/bash
+    kindest/node:v1.19.1 
 ----
 
 == Get token/create a new token
@@ -41,18 +45,4 @@ kubeadm join 172.18.0.3:6443 \
     --token abcdef.0123456789abcdef \
     --discovery-token-ca-cert-hash sha256:304f8ab3ec35207f307efb5194ac829e6e58b6f116e4c37e461abb0f2ab8800e --ignore-preflight-errors=all
 ----
-== Troubeshooting
 
-[source,bash]
-----
-#check node
-
-kubectl -n kube-system logs kube-proxy-vbqmx
-Error from server (BadRequest): container "kube-proxy" in pod "kube-proxy-vbqmx" is waiting to start: ContainerCreating
-
-journalctl -xeu kubelet --no-pager | grep -i error
-
-Dec 21 15:30:08 cea61ce44710 kubelet[373]: E1221 15:30:08.137651     373 driver-call.go:266] Failed to unmarshal output for command: init, output: "", error: unexpected end of JSON input
-Dec 21 15:30:08 cea61ce44710 kubelet[373]: W1221 15:30:08.137666     373 driver-call.go:149] FlexVolume: driver call failed: executable: /usr/libexec/kubernetes/kubelet-plugins/volume/exec/nodeagent~uds/uds, args: [init], error: fork/exec /usr/libexec/kubernetes/kubelet-plugins/volume/exec/nodeagent~uds/uds: no such file or directory, output: ""
-Dec 21 15:30:08 cea61ce44710 kubelet[373]: E1221 15:30:08.137675     373 plugins.go:734] Error dynamically probing plugins: Error creating Flexvolume plugin from directory nodeagent~uds, skipping. Error: unexpected end of JSON input
-----
