@@ -11,13 +11,13 @@ Env:   ./up.sh calico-lb
 ----
 #start a new worker
 docker run -d --network=kind --privileged  \
-    --add-host worker-new01:127.0.0.1 \
+        --hostname worker-new01 \
 	--security-opt apparmor=unconfined,seccomp=unconfined \
 	--tmpfs=/tmp,/run \
 	--volume /lib/modules:/lib/modules \
 	-v /var \
-    --name=worker-new01 \
-    kindest/node:v1.19.1 
+        --name=worker-new01 \
+        kindest/node:v1.19.1 
 ----
 
 == Get token/create a new token
