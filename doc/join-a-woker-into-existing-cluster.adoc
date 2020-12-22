@@ -33,7 +33,9 @@ docker exec -it kind-control-plane kubeadm toke list
 [source, bash]
 ----
 #get discovery-token-ca-cert-hash
-docker exec -it kind-control-plane openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+docker exec -it kind-control-plane openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt |\
+      openssl rsa -pubin -outform der 2>/dev/null | \
+      openssl dgst -sha256 -hex | sed 's/^.* //'
 ----
 
 == Join the new worker node
@@ -43,6 +45,7 @@ docker exec -it kind-control-plane openssl x509 -pubkey -in /etc/kubernetes/pki/
 #join the new node
 kubeadm join 172.18.0.3:6443 \
     --token abcdef.0123456789abcdef \
-    --discovery-token-ca-cert-hash sha256:304f8ab3ec35207f307efb5194ac829e6e58b6f116e4c37e461abb0f2ab8800e --ignore-preflight-errors=all
+    --discovery-token-ca-cert-hash sha256:304f8ab3ec35207f307efb5194ac829e6e58b6f116e4c37e461abb0f2ab8800e \
+    --ignore-preflight-errors=all
 ----
 
