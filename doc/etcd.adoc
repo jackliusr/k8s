@@ -1,5 +1,7 @@
 = etcd cluster operation
 
+Env:  labs/etcd
+
 == create cluster
 
 === single node cluster
@@ -26,3 +28,45 @@ docker run \
 ----
 
 === 3 node cluster
+
+"docker-compose docker-compose.yaml up" will launch a 3 nodes etcd cluster.
+
+3node-etcd.yaml can be used to launch a ready environment to practice static way
+
+[source,bash ]
+----
+etcd --name etcd1 --initial-advertise-peer-urls http://etcd1:2380 \
+  --listen-peer-urls http://0.0.0.0:2380   \
+  --listen-client-urls http://0.0.0.0:2379   \
+  --advertise-client-urls http://etcd1:2379   \
+  --initial-cluster-token etcd-cluster-1   \
+  --initial-cluster etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380   \
+  --initial-cluster-state new
+
+
+
+etcd --name etcd2  \
+	--initial-advertise-peer-urls http://etcd2:2380    \
+	--listen-peer-urls http://0.0.0.0:2380    \
+	--listen-client-urls http://0.0.0.0:2379    \
+	--advertise-client-urls http://etcd2:2379    \
+	--initial-cluster-token etcd-cluster-1    \
+	--initial-cluster etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380    \
+	--initial-cluster-state new 
+
+
+
+etcd --name etcd3  \
+--initial-advertise-peer-urls http://etcd3:2380    \
+--listen-peer-urls http://0.0.0.0:2380    \
+--listen-client-urls http://0.0.0.0:2379    \
+--advertise-client-urls http://etcd3:2379    \
+--initial-cluster-token etcd-cluster-1    \
+--initial-cluster etcd1=http://etcd1:2380,etcd2=http://etcd2:2380,etcd3=http://etcd3:2380    \
+--initial-cluster-state new
+
+----
+
+=== Backup and Recover
+
+=== Add and Remove nodes
