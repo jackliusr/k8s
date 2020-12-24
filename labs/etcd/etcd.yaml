@@ -13,8 +13,15 @@ services:
     security_opt:
     - seccomp:unconfined
     - apparmor:unconfined
-    commands:
-    - 
+    entrypoint: /usr/local/bin/etcd
+    command:
+    -  '--data-dir=/etcd-data'
+    -  '--name node1' 
+    -  '--initial-advertise-peer-urls http://171.20.1.1:2380'
+    -  '--listen-peer-urls http://171.20.1.1:2380,http://localhost:2380'
+    -  '--advertise-client-urls http://171.20.1.1:2379,http://localhost:2379' 
+    -  '--listen-client-urls http://171.20.1.1:2379,http://localhost:2379'
+    -  '--initial-cluster node1=http://171.20.1.1:2380'
     ports:
     - 6443
     networks:
