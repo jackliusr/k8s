@@ -1,0 +1,32 @@
+version: "3.9"
+networks:
+  etcd:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/16"
+services:
+  etcd1:
+    hostname: etcd1 
+    image: "quay.io/coreos/etcd:v3.4.13"
+    privileged: true
+    security_opt:
+    - seccomp:unconfined
+    - apparmor:unconfined
+    commands:
+    - 
+    ports:
+    - 6443
+    networks:
+      etcd:
+        ipv4_address: "172.20.1.1"
+    tmpfs:
+    - /tmp
+    - /run
+    volumes:
+      - /etcd-data
+      - /var
+      - type: bind
+        source: /lib/modules
+        target: /lib/modules
+        read_only: true
