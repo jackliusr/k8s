@@ -23,6 +23,6 @@ docker run \
   --advertise-client-urls http://${NODE1}:2379,http://localhost:2379 \
   --listen-client-urls http://${NODE1}:2379,http://localhost:2379 \
   --initial-cluster node1=http://${NODE1}:2380
- ---
+----
 
 === 3 node cluster
