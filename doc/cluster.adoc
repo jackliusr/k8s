@@ -79,12 +79,34 @@ There is a new way Kinder to create this kind of cluster  instead of docker-comp
 | 1 lb, 3 masters, 2 workers
 | Creating Highly Available clusters with kubeadm
 
-| etcd
+| etcd-kubelet
 | 3 nodes
-| etcd 3 nodes cluster
+| etcd 3 nodes cluster, etcd managed by standalone kubelet
 
 | ld+etcd
 | haproxy + 3 masters + 2 workers + 3 etcd nodes
 | k8s ha cluster with external etcd cluster
 |
+===
+
+== etcd clusters
+
+labs/etcd
+
+All the files in the the above directory are docker-compose files.
+
+.etcd clusters
+|====
+| cluster | configuration | purpose
+| 1node-etcd
+| 1 node ready cluster
+| simple practice etcdctl commands
+
+| 3node-etcd
+| 3 nodes, not ready
+| practice setup clusters, add and remove members, migrate members
+
+| docker-compose
+| 3 node, ready cluster
+| backup and restore, performance, benchmarking, monitering etc
 ===

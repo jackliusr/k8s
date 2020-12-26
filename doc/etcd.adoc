@@ -68,7 +68,7 @@ etcd --name etcd3  \
 
 ----
 
-=== Backup and Recover
+== Backup and Restore
 Working directory: labs/etcd
 
 Env: docker-compose up
@@ -123,7 +123,7 @@ docker exec -it  etcd-3 etcd \
 
 ----
 
-=== Add and Remove nodes
+== Add and Remove nodes
 
 Working directory:  labs/etcd
 
