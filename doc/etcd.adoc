@@ -71,3 +71,38 @@ etcd --name etcd3  \
 === Backup and Recover
 
 === Add and Remove nodes
+
+Working directory:  labs/etcd
+
+Env:  docker-compose up
+[source, bash]
+----
+docker run -d --name=etcd-4 \
+   --network=etcd_default \
+   --hostname=etcd-4 \
+   quay.io/coreos/etcd:v3.4.13 \
+   /bin/sh -c "sleep 1d"
+
+docker exec -d  etcd-1 etcdctl member add etcd-4 --peer-urls=http://etcd-4:2380
+
+docker exec -it etcd-4 /bin/sh
+export ETCD_NAME="etcd-4"
+export ETCD_INITIAL_CLUSTER="etcd-2=http://etcd-2:2380,etcd-4=http://etcd-4:2380,etcd-1=http://etcd-1:2380,etcd-3=http://etcd-3:2380"
+export ETCD_INITIAL_ADVERTISE_PEER_URLS="http://etcd-4:2380"
+export ETCD_INITIAL_CLUSTER_STATE="existing"
+
+etcd --listen-client-urls http://etcd-4:2379 \
+   --advertise-client-urls http://etcd-4:2379 \
+   --listen-peer-urls http://etcd-4:2380 
+   
+# verify cluster status
+etcdctl member list
+#assume etcd-2 88d11e2649dad027 , not a leader
+etcdctl member remove 88d11e2649dad027
+
+#clean up
+docker-compose down
+docker rm -f etcd-4
+----
+
+
