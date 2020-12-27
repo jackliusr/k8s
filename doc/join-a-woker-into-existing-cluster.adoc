@@ -6,7 +6,7 @@
 Env:   ./up.sh calico-lb
 
 
-==  Start a new Workr
+==  Start a new Worker
 
 [source, bash]
 ----
