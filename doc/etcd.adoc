@@ -1,4 +1,7 @@
 = etcd cluster operation
+:toc:
+
+== Env
 
 Env:  labs/etcd
 
