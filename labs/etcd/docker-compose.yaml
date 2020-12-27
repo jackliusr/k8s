@@ -3,6 +3,7 @@ version: '3'
 services:
     etcd-1:
         container_name: etcd-1
+        hostname: etcd-1
         image: quay.io/coreos/etcd:v3.4.13
         entrypoint: /usr/local/bin/etcd
         command:
@@ -18,10 +19,13 @@ services:
             - '--initial-cluster-state=new'
         ports:
             - 2379
+        environment:
+        - ETCD_DATA_DIR=/etcd_data
         volumes:
             - etcd-1:/etcd_data
     etcd-2:
         container_name: etcd-2
+        hostname: etcd-2
         image: quay.io/coreos/etcd:v3.4.13
         entrypoint: /usr/local/bin/etcd
         command:
@@ -37,10 +41,13 @@ services:
             - '--initial-cluster-state=new'
         ports:
             - 2379
+        environment:
+        - ETCD_DATA_DIR=/etcd_data
         volumes:
             - etcd-2:/etcd_data
     etcd-3:
         container_name: etcd-3
+        hostname: etcd-3
         image: quay.io/coreos/etcd:v3.4.13
         entrypoint: /usr/local/bin/etcd
         command:
@@ -56,6 +63,8 @@ services:
             - '--initial-cluster-state=new'
         ports:
             - 2379
+        environment:
+        - ETCD_DATA_DIR=/etcd_data
         volumes:
             - etcd-3:/etcd_data
 

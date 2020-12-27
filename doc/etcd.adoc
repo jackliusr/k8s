@@ -162,3 +162,38 @@ docker rm -f etcd-4
 ----
 
 
+== Migrate a member
+
+https://etcd.io/docs/v2/admin_guide/#member-migration
+
+[source, bash]
+----
+docker-compose up
+docker run -d --name=etcd-4 \
+   --network=etcd_default \
+   --hostname=etcd-4 \
+   -e 'ETCD_DATAT_DIR=/etcd_data' \
+   --mount source=etcd_etcd-3,target=/old-etcd-data \
+   quay.io/coreos/etcd:v3.4.13 \
+   /bin/sh -c "sleep 1d"
+
+docker pause  etcd-3
+
+docker exec -it etcd-1 /bin/sh
+# assume etcd-3's member id is c3697c3697a4, and etcd-4's IP is 172.26.0.5
+etcdctl member update c3697a420dcd --peer-urls=http://172.26.0.5:2380
+
+docker exec -it etcd-4 /bin/sh
+
+cp -r /old-etcd-data /etcd_data
+
+etcd -name etcd-3 \
+-listen-peer-urls http://172.26.0.5:2380 \
+-listen-client-urls http://172.26.0.5:2379,http://127.0.0.1:2379 \
+-advertise-client-urls http://172.26.0.5:2379,http://127.0.0.1:2379
+
+
+#clean up
+docker rm -f etcd-4
+docker-compose down
+----
