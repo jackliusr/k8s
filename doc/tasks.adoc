@@ -1,4 +1,5 @@
 = Tasks
+:TOC:
 
 Tasks in https://kubernetes.io/docs/tasks/
 
