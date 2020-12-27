@@ -1,4 +1,5 @@
 = Join a new woker into an existing cluster
+:TOC:
 
 == Env
 
