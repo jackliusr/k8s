@@ -7,7 +7,7 @@ networks:
         - subnet: "172.19.0.0/16"
 services:
   haproxy:
-    hostname: kind-external-load-balancer
+    hostname: haproxy
     image: kindest/haproxy:v20200708-548e36db
     ports:
     - 6443
@@ -18,8 +18,8 @@ services:
     networks:
       bootstrap:
         ipv4_address: 172.19.0.100
-  kind-control-plane:
-    hostname: kind-control-plane 
+  master1:
+    hostname: master1
     image: "kindest/node:v1.19.4"
     labels:
       io.x-k8s.kind.role: control-plane 
@@ -49,8 +49,8 @@ services:
         source: /lib/modules
         target: /lib/modules
         read_only: true
-  kind-control-plane2:
-    hostname: kind-control-plane2 
+  master2:
+    hostname: master2
     image: "kindest/node:v1.19.4"
     labels:
       io.x-k8s.kind.role: control-plane 
@@ -61,7 +61,7 @@ services:
     - seccomp:unconfined
     - apparmor:unconfined
     depends_on:
-      - kind-control-plane
+      - master1
       - haproxy
     ports:
     - 6443
@@ -82,8 +82,8 @@ services:
         source: /lib/modules
         target: /lib/modules
         read_only: true
-  kind-control-plane3:
-    hostname: kind-control-plane3 
+  master3:
+    hostname: master3
     image: "kindest/node:v1.19.4"
     labels:
       io.x-k8s.kind.role: control-plane 
@@ -94,7 +94,7 @@ services:
     - seccomp:unconfined
     - apparmor:unconfined
     depends_on:
-      - kind-control-plane
+      - master1
       - haproxy
     ports:
     - 6443
@@ -123,7 +123,7 @@ services:
     - seccomp:unconfined
     - apparmor:unconfined
     depends_on:
-      - kind-control-plane
+      - master1
       - haproxy
     ports:
     - 6443
@@ -146,7 +146,7 @@ services:
     - seccomp:unconfined
     - apparmor:unconfined
     depends_on:
-      - kind-control-plane
+      - master1
       - haproxy
     ports:
     - 6443
