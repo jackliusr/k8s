@@ -1,7 +1,25 @@
 = kind-configs
 my KIND configurations for different practices
 
-CKA and CKAD test environment support calico and flannel. The KIND cluster configrations will be added first.
+CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster configrations will be added first.
+. [*] kustomize
+. [*] helm
+. kubecfg
+. [*] telepresence
+. [*] skaffold
+. [*] Service catalog
+. security
+.. [] Trivy
+.. [] Sysdig
+.. [] Falco
+.. [] App Armor
+
+Others:
+* [] mesh
+* [] kubeflow
+* [] argocd
+* [] secret management https://github.com/banzaicloud/bank-vaults
+
 
 == Prerequisites
 
