@@ -1,7 +1,10 @@
 = kind-configs
+:icons: font
+
 my KIND configurations for different practices
 
 CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster configrations will be added first.
+
 . [*] kustomize
 . [*] helm
 . kubecfg
@@ -15,6 +18,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] App Armor
 
 Others:
+
 * [] mesh
 * [] kubeflow
 * [] argocd
