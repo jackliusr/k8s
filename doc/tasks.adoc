@@ -90,7 +90,7 @@ Copy the following files from any etcd node in the cluster to the first control 
 [source,bash]
 ----
 docker cp /home/jack/cert/etcd/172.19.1.2/pki bootstrap_kind-control-plane_1:/etc/kubernetes/pki
----
+----
 
 === Set up the first control plane node
 
