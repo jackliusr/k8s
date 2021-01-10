@@ -11,6 +11,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] telepresence
 . [*] skaffold
 . [*] Service catalog
+. [*] gitops fluxcd
 . security
 .. [] Trivy
 .. [] Sysdig
