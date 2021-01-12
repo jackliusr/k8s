@@ -1,8 +1,10 @@
 = Argo CD
 
 https://argoproj.github.io/argo-cd/getting_started/
-
+[source,bash]
+----
+kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
-
 export ARGOCD_OPTS='--port-forward-namespace argocd'
 argocd login argocd-server-6dccb8-qm --port-forward
+----
