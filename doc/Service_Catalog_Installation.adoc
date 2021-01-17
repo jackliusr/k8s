@@ -33,15 +33,18 @@ https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/walkthrough.
 
 . Installing the minibroker Server
 +
-----
+====
+
 [source, bash]
 ----
 kubectl create namespace minibroker 
 helm repo add minibroker https://minibroker.blob.core.windows.net/charts
 helm install  minibroker --namespace minibroker minibroker/minibroker
 ----
-  except the first step. other steps can follow the instructions at https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/walkthrough.md
-----
+
+except the first step. other steps can follow the instructions at https://github.com/kubernetes-sigs/service-catalog/blob/master/docs/walkthrough.md
+  
+====
 [start=2]
 . Viewing ClusterServiceClasses and ClusterServicePlans
 . Creating a New ServiceInstance
