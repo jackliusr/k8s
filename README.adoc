@@ -22,7 +22,7 @@ Others:
 
 * [] mesh
 * [] kubeflow
-* [] argocd
+* [*] argocd
 * [] secret management https://github.com/banzaicloud/bank-vaults
 
 
@@ -58,4 +58,5 @@ link:doc/cluster.adoc[Clusters and their configuration features and purposes]
 - link:doc/cilium.adoc[Cilium]
 - link:doc/Service_Catalog_Installation.adoc[Service Catalog Walkthrough]
 - link:doc/etcd.adoc[etcd operations guide]
+- link:doc/networkpolicy.adoc[Network Policy]
 
