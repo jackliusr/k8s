@@ -122,3 +122,17 @@ EOF
 ----
 
 kubeadm init --config kubeadm-config.yaml --upload-certs --ignore-preflight-errors=all0
+
+== Upgrade cluster
+
+env: ./up.sh upgrade
+
+Notice:
+ during installing new version kubeadm even specified the version, seems kubelet and kubectl are updated into the latest version as well. To compensate this, pass the --allow-downgrades to apt install during installation of kubelet and kubectl
+
+[source, bash]
+----
+apt-mark unhold kubelet kubectl && \
+apt-get update && apt-get install -y --allow-downgrades kubelet=1.19.7-00 kubectl=1.19.7-00 && \
+apt-mark hold kubelet kubectl
+----
