@@ -11,5 +11,10 @@ Setup:
 ./up.sh cilium
 ----
 
-Existing issues:
-cilium pod fail to start. I will investigate it later.
+Issues:
+
+Cilium can't run on kind cluster+WSL due to the following reason:
+----
+WSL2 kernel dones't support eBPF and the following errors appear in the cilium pods.
+Error: TC classifier not found." subsys=datapath-loader
+----
