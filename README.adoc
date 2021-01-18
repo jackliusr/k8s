@@ -28,7 +28,7 @@ Others:
 
 == Prerequisites
 
-Docker, kind and helm are installed at your machine
+Docker, kind, kinder, jq and helm are installed at your machine
 
 == Usage
 
