@@ -19,7 +19,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] App Armor
 
 Others:
-
+* [*] eksctl
 * [] mesh
 * [] kubeflow
 * [*] argocd
