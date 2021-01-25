@@ -12,10 +12,13 @@
 All above things considered, choose one region, no private subnet, weavenet CNI
 
 
+https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installing-on-eks[Setup weavenet on EKS]
+
 ref:
 
 * https://docs.google.com/spreadsheets/d/1MCdsmN7fWbebscGizcK6dAaPGS-8T_dYxWp0IdwkMKI/edit#gid=1549051942
 * https://www.weave.works/blog/aws-and-kubernetes-networking-options-and-trade-offs-part-3
+* https://itnext.io/benchmark-results-of-kubernetes-network-plugins-cni-over-10gbit-s-network-updated-august-2020-6e1b757b9e49
 
 == prod env
 
