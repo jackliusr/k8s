@@ -1,4 +1,5 @@
 = eks setup notes
+:TOC:
 
 == dev environment consideration
 
