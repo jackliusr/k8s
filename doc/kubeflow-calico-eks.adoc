@@ -108,7 +108,13 @@ Change the kustomization.yaml files in respective folders according to the follo
 - op: add
   path: /spec/template/spec/hostNetwork
   value: true
-  
+
+---
+#./istio-stack/istio-sidecar-injector.yaml
+- op: add
+  path: /spec/template/spec/hostNetwork
+  value: true
+ 
 ---
 #./istio-stack/istio-telemetry-patch.yaml
 
