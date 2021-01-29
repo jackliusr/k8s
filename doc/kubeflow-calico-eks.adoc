@@ -75,6 +75,16 @@ nodeGroups:
 
 https://docs.projectcalico.org/getting-started/kubernetes/managed-public-cloud/eks
 
+=== command line
+
+as in https://docs.projectcalico.org/getting-started/kubernetes/managed-public-cloud/eks
+
+=== config file
+
+Issues: 
+
+* can't communicate with other pods
+
 [source, bash]
 ----
 kubectl delete daemonset -n kube-system aws-node
