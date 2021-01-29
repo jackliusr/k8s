@@ -1,5 +1,10 @@
 = Setup kubeflow on eks in cost effective way
-== create eks cluster
+:TOC:
+
+Favor configuration file than command line. 
+
+[#eks-cluster-cfg-file]
+==  eks cluster configuration file
  
  keywords: maxPodsPerNode, pod density and ec2 instance types
  
@@ -71,27 +76,30 @@ nodeGroups:
       
 ----
  
-== Setup up Calico
+== Create eks cluster and Setup up Calico
 
 https://docs.projectcalico.org/getting-started/kubernetes/managed-public-cloud/eks
 
-=== command line
-
-as in https://docs.projectcalico.org/getting-started/kubernetes/managed-public-cloud/eks
-
-=== config file
-
-Issues: 
-
-* can't communicate with other pods
+Assuming the cluster configuration file is kf-dev-cluster.yaml
 
 [source, bash]
 ----
+eksctl create cluster -f kf-dev-cluster.yaml --without-nodegroup
 kubectl delete daemonset -n kube-system aws-node
-# ssh to nodes and rm /etc/cni/net.d/10-aws.conflist
-# maybe should follow the instructions to clean up fully at https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#eks 
 kubectl apply -f https://docs.projectcalico.org/manifests/calico-vxlan.yaml
+eksctl create nodegroup -f kf-dev-cluster.yaml
 ----
+
+== Check if the cluster works
+
+[source, bash]
+----
+kubectl create deployment nginx --image=nginx --replicas 2 --port 80
+kubectl expose deployment nginx
+kubectl run tmp-$RANDOM --image=alpine --rm -it --restart=Never -- wget -qO- nginx
+#the above wget command should be successfully run without any error such as timeout etc.
+----
+
 == Setup kubeflow
 
 https://www.kubeflow.org/docs/aws/deploy/install-kubeflow/
