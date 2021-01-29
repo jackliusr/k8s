@@ -1,0 +1,55 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+= Setup istio 1.8 on eks+calico environment
+:TOC:
+
+== Environment
+
+eks: 1.8
+istio: 1.8
+calico
+
+== Setup EKS+Calico
+
+Refer to all steps except the last one at this link
+link:kubeflow-calico-eks.adoc[Setup EKS+Calico]
+
+== istio
+
+overlay file with patches: patch.yaml
+[source, yaml]
+----
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  components:
+    pilot:
+      k8s:
+       overlays:
+       - kind: Deployment
+         name: istiod
+         patches:
+         - path: spec.template.spec.hostNetwork
+           value: true
+----
+
+[source, bash]
+----
+istioctl install set --profile=demo -f patch.yaml
+----
+
+[CAUTION]
+====
+Calico networking cannot currently be installed on the EKS control plane nodes. 
+As a result the control plane nodes will not be able to initiate network connections to Calico pods.
+(This is a general limitation of EKS’s custom networking support, not specific to Calico.) As a workaround, 
+trusted pods that require control plane nodes to connect to them, such as those implementing admission 
+controller webhooks, can include hostNetwork:true in their pod spec. 
+See the Kuberentes API pod spec definition for more information on this setting.
+====
