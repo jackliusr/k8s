@@ -3,6 +3,11 @@
 
 Favor configuration file than command line. 
 
+== Environment
+
+eks 1.18
+kubeflow v1.2
+
 [#eks-cluster-cfg-file]
 ==  eks cluster configuration file
  
