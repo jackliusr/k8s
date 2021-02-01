@@ -1,0 +1,12 @@
+= cert-manager
+:TOC:
+
+cert-manager v0.11 is used in kubeflow 1.2.  During setting up the integration cert-manager and istio, I encountered several issues and put them here
+
+==  Get or describe resources of cert-managers
+
+[source, bash]
+----
+kubectl get issuers.cert-manager
+kubectl describe issuers.cert-manager
+----
