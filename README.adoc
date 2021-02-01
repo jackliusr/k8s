@@ -11,7 +11,8 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] telepresence
 . [*] skaffold
 . [*] Service catalog
-. [*] gitops fluxcd
+. [*] gitops argocd
+. [*] istio
 . security
 .. [] Trivy
 .. [] Sysdig
@@ -23,7 +24,7 @@ Others:
 * [*] eksctl
 * [] mesh
 * [] kubeflow
-* [*] argocd
+* [*] fluxcd
 * [] secret management https://github.com/banzaicloud/bank-vaults
 
 
@@ -61,4 +62,5 @@ link:doc/cluster.adoc[Clusters and their configuration features and purposes]
 - link:doc/etcd.adoc[etcd operations guide]
 - link:doc/networkpolicy.adoc[Network Policy]
 - link:https://medium.com/@mat285/migrating-the-kubernetes-network-overlay-with-zero-downtime-5ff45fed826a[Migrating the Kubernetes Network Overlay With Zero Downtime]
+- link:doc/isto.adoc
 
