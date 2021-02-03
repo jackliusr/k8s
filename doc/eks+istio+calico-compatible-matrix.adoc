@@ -7,7 +7,7 @@ The worked combination of eks  and istio:
 
 .eks and istio compatiblity matrix
 |===
-|eks | matrix
+|eks | istio
 
 |1.18
 |1.8.2
