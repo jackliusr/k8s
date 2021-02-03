@@ -1,0 +1,17 @@
+= eks and istio compatiblity matrix
+
+Istio is buggy and tricky to make it right. Istio 1.3.1 has issues to setup virtualservices when their hosts are configurated as domain name.
+
+Several issues mentioned that kubeflow 1.2 only can work with istio below 1.6. I recorded the issues I encountered and their solutions if there were. 
+The worked combination of eks  and istio: 
+
+.eks and istio compatiblity matrix
+|===
+|eks | matrix
+
+|1.18
+|1.8.2
+|===
+
+https://github.com/kubeflow/kubeflow/issues/5176
+https://github.com/kubeflow/kubeflow/issues/5313
