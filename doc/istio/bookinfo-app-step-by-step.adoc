@@ -17,7 +17,12 @@ kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
 
 wsl2:
 
-sudo socat TCP-LISTEN:80,reuseaddr,fork,su=nobody TCP:$IP:80
+[source, bash]
+----
+#kubectl -n istio-system get svc istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip
+sudo socat TCP-LISTEN:80,reuseaddr,fork,su=nobody \
+    TCP:$(kubectl -n istio-system get svc istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}":80
+----
 
 Windows:
 
