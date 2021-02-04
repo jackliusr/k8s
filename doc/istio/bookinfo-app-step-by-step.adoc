@@ -1,7 +1,7 @@
 = Bookinfo Application
+:TOC:
 
-
-Objective: practice istio configuration based on environment and targetted architectural diagram
+Objective: practice istio configuration based on the following environment and targetted architectural diagram
 
 == Env
 
@@ -21,7 +21,10 @@ sudo socat TCP-LISTEN:80,reuseaddr,fork,su=nobody TCP:$IP:80
 
 Windows:
 
+```
+#add following line into C:\Windows\System32\drivers\etc\hosts, the IP address is wsl2
 172.24.231.138  my-istio-dashboard.io my-istio-tracing.io my-istio-logs-database.io my-kiali.io tutorial.bookinfo.com istio.tutorial.bookinfo.com www.bookinfo.com
+```
 
 === Option 2: Browser in a docker  and vnc in windows
 
@@ -38,4 +41,119 @@ image::https://istio.io/latest/docs/examples/bookinfo/withistio.svg[Bookinfo wit
 
 [source, yaml]
 ----
+# gw-bookinfo.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: bookinfo-gw
+spec:
+  selector:
+     app: istio-ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "www.bookinfo.com"
+----
 
+=== Virtual service
+
+[source, yaml]
+----
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bookinfo-vs
+spec:
+  hosts:
+  - "www.bookinfo.com"
+  gateways:
+  - bookinfo-gw
+  http:
+  - match:
+    - uri:
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
+    route:
+    - destination:
+        host: productpage
+        port:
+          number: 9080
+----
+
+=== Destination Rules
+
+commands to get pods and their versions: 
+
+kubectl get pods -lapp -Lapp -Lversion
+
+
+[source, yaml]
+----
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: productpage
+spec:
+  host: productpage
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: details
+spec:
+  host: details
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: ratings
+spec:
+  host: ratings
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: reviews
+spec:
+  host: reviews
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
+---
+----
+
+=== Istio Tasks and  Configuring Request Routing
+
+. https://istio.io/latest/docs/tasks/
+. https://istio.io/latest/docs/tasks/traffic-management/request-routing/
+. https://istio.io/latest/docs/examples/microservices-istio/
