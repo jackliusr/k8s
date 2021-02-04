@@ -1,3 +1,25 @@
 = Istio
+:TOC:
 
+== Prerequisite
+[source, bash]
+----
+ curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.8.2 TARGET_ARCH=x86_64 sh -
+ export PATH=$HOME/istio-1.8.2/bin:$PATH
+----
+
+== Lab Env:
+
+[source, bash]
+----
+./up.sh istio
+----
+
+== Doc
 link:istio/eks+calico+istio1.8.adoc[eks + calico + istio 1.8.2 setup]
+
+== Exercise
+
+. https://istio.io/latest/docs/examples/[Examples]
+. https://istio.io/latest/docs/tasks/[Tasks]
+. https://istio.io/latest/docs/ops/[Operations]
