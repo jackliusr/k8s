@@ -1,0 +1,41 @@
+= Bookinfo Application
+
+
+Objective: practice istio configuration based on environment and targetted architectural diagram
+
+== Env
+
+Working directory:  istio installaction folder
+
+[source, bash]
+----
+kubectl label namespace default istio-injection=enabled
+kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+----
+
+=== Option 1: Browser in windows
+
+wsl2:
+
+sudo socat TCP-LISTEN:80,reuseaddr,fork,su=nobody TCP:$IP:80
+
+Windows:
+
+172.24.231.138  my-istio-dashboard.io my-istio-tracing.io my-istio-logs-database.io my-kiali.io tutorial.bookinfo.com istio.tutorial.bookinfo.com www.bookinfo.com
+
+=== Option 2: Browser in a docker  and vnc in windows
+
+docker run -d -p $IP:25901:5901 -p $IP:26901:6901 -u 0 --name xfce --network kind accetto/ubuntu-vnc-xfce-chromium
+
+
+== Architecture Diagram
+
+image::https://istio.io/latest/docs/examples/bookinfo/withistio.svg[Bookinfo with istio]
+
+== Steps:
+
+=== Gateway:
+
+[source, yaml]
+----
+
