@@ -147,14 +147,17 @@ export ETCD_INITIAL_CLUSTER="etcd-2=http://etcd-2:2380,etcd-4=http://etcd-4:2380
 export ETCD_INITIAL_ADVERTISE_PEER_URLS="http://etcd-4:2380"
 export ETCD_INITIAL_CLUSTER_STATE="existing"
 
-etcd --listen-client-urls http://etcd-4:2379 \
-   --advertise-client-urls http://etcd-4:2379 \
-   --listen-peer-urls http://etcd-4:2380 
+export IP=$(getent hosts etcd-4  | awk '{print $1}')
+etcd --listen-client-urls http://$IP:2379 \
+   --advertise-client-urls http://$IP:2379 \
+   --listen-peer-urls http://$IP:2380
    
 # verify cluster status
-etcdctl member list
+export ENDPOINTS=$(getent hosts etcd-{1..4} | awk '{print "http://" $2 ":2379"}' | paste -sd',')
+etcdctl member list --endpoints=$ENDPOINTS -w table
+etcdctl endpoint status --endpoints=$ENDPOINTS -w table
 #assume etcd-2 88d11e2649dad027 , not a leader
-etcdctl member remove 88d11e2649dad027
+etcdctl member remove 88d11e2649dad027 --endpoints=$ENDPOINTS
 
 #clean up
 docker-compose down
