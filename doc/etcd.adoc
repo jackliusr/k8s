@@ -80,6 +80,7 @@ https://etcd.io/docs/v3.4.0/op-guide/recovery/#restoring-a-cluster
 
 [source, bash]
 ----
+
 docker exec -it etcd-1 /bin/sh
 etcdctl put foo1 bar1
 etcdctl put foo2 bar2
@@ -91,12 +92,17 @@ docker cp etcd-1:/root/snapshot.db /tmp/snapshot.db
 docker-compose down
 docker-compose -f 3node-etcd.yaml up
 
+for i in {1..3}
+do
+ docker cp snapshot.db  etcd-${i}:/root/snapshot.db 
+done
+
 docker exec -d  etcd-1  etcdctl snapshot restore /root/snapshot.db \
   --name m1 \
   --initial-cluster m1=http://etcd-1:2380,m2=http://etcd-2:2380,m3=http://etcd-3:2380 \
   --initial-cluster-token etcd-cluster-1 \
   --initial-advertise-peer-urls http://etcd-1:2380
-docker exec -d  etcd-3 etcdctl snapshot restore /root/snapshot.db \
+docker exec -d  etcd-2 etcdctl snapshot restore /root/snapshot.db \
   --name m2 \
   --initial-cluster m1=http://etcd-1:2380,m2=http://etcd-2:2380,m3=http://etcd-3:2380 \
   --initial-cluster-token etcd-cluster-1 \
@@ -107,13 +113,14 @@ docker exec -d  etcd-3 etcdctl snapshot restore /root/snapshot.db \
   --initial-cluster-token etcd-cluster-1 \
   --initial-advertise-peer-urls http://etcd-3:2380
 
-  
+docker exec -it etcd-1 getent hosts etcd-{1..3}
+ 
 docker exec -it  etcd-1  etcd \
   --name m1 \
   --listen-client-urls http://etcd-1:2379 \
   --advertise-client-urls http://etcd-1:2379 \
   --listen-peer-urls http://etcd-1:2380 
-docker exec -it  etcd-3  etcd \
+docker exec -it  etcd-2  etcd \
   --name m2 \
   --listen-client-urls http://etcd-2:2379 \
   --advertise-client-urls http://etcd-2:2379 \
@@ -124,6 +131,10 @@ docker exec -it  etcd-3 etcd \
   --advertise-client-urls http://etcd-3:2379 \
   --listen-peer-urls http://etcd-3:2380 
 
+#check
+docker exec -it etcd-1 etcdctl  \
+   --endpoints=$(docker exec  etcd-1 getent hosts etcd-{1..3} | awk '{print "http://" $1 ":2379"}' | paste -sd ',') \
+   member list -w table
 ----
 
 == Add and Remove nodes
