@@ -24,4 +24,6 @@ data:
       - ${SUBNET}.255.1-${SUBNET}.255.250
 EOF
 
+sleep 5
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml
 
