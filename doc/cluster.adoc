@@ -83,7 +83,7 @@ There is a new way Kinder to create this kind of cluster  instead of docker-comp
 | 3 nodes
 | etcd 3 nodes cluster, etcd managed by standalone kubelet
 
-| ld+etcd
+| ld-etcd
 | haproxy + 3 masters + 2 workers + 3 etcd nodes
 | k8s ha cluster with external etcd cluster
 |===
