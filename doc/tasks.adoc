@@ -123,6 +123,30 @@ EOF
 
 kubeadm init --config kubeadm-config.yaml --upload-certs --ignore-preflight-errors=all0
 
+== Creating Highly Available clusters with kubeadm
+
+
+=== Env
+
+[source, bash]
+----
+cd labs/bootstrap
+docker-compose -f lb.yaml up -d
+----
+
+=== Steps
+
+following the instructions at https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
+
+notice ignore-preflight-errors and pod-network-cidr.
+
+[source, bash]
+----
+ kubeadm init --control-plane-endpoint "172.19.0.100:6443" --upload-certs \
+    --ignore-preflight-errors=all \
+    --pod-network-cidr=10.240.0.0/16
+----
+
 == Upgrade cluster
 
 https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
@@ -143,3 +167,4 @@ apt-mark unhold kubelet kubectl && \
 apt-get update && apt-get install -y --allow-downgrades kubelet=1.19.7-00 kubectl=1.19.7-00 && \
 apt-mark hold kubelet kubectl
 ----
+
