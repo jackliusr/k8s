@@ -7,7 +7,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 
 . [*] kustomize
 . [*] helm
-. kubecfg
+. [] kubecfg
 . [*] telepresence
 . [*] skaffold
 . [*] Service catalog
@@ -18,11 +18,16 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] Sysdig
 .. [] Falco
 .. [] App Armor
+. application
+.. [] knative
+.. [] tiggermesh
+.. [] tekton, Cloud Native CI/CD, used by knative and triggermesh
+
 
 Others:
 
 * [*] eksctl
-* [] mesh
+* [*] mesh, basically istio now is the de facto standard. 
 * [] kubeflow
 * [*] fluxcd
 * [] secret management https://github.com/banzaicloud/bank-vaults
