@@ -12,7 +12,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] skaffold
 . [*] Service catalog
 . [*] gitops argocd
-. [*] istio
+. [*] istio, envoyproxy
 . security
 .. [] Trivy
 .. [] Sysdig
@@ -30,7 +30,7 @@ Others:
 
 == Prerequisites
 
-Docker, kind, kinder, jq and helm are installed at your machine
+Docker, kind, kinder, jq, yq, kustomize and helm are installed at your machine
 
 == Usage
 
