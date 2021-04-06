@@ -15,6 +15,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] link:https://github.com/summerwind/actions-runner-controller[github self-hosted actions-runner for kubernetes]
 . [*] istio, envoyproxy
 . security
+.. [] hsm
 .. [] Trivy
 .. [] Sysdig
 .. [] Falco
