@@ -20,6 +20,11 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] Sysdig
 .. [] Falco
 .. [] App Armor
+. LMA stack: logging, monitoring and alerting
+.. [*] ECK
+.. [] logstash 
+.. [] Fluentd
+.. [] alerting ?
 . application
 .. [] knative
 .. [] tiggermesh
