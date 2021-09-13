@@ -1,0 +1,21 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraMounts:
+  - hostPath: ./configs/cni
+    containerPath: /mnt/cni
+  - hostPath: ./configs
+    containerPath: /mnt/configs
+- role: worker
+  extraMounts:
+  - hostPath: ./configs/cni
+    containerPath: /mnt/cni
+- role: worker
+  extraMounts:
+  - hostPath: ./configs/cni
+    containerPath: /mnt/cni
+networking:
+  disableDefaultCNI: true # disable kindnet
+  # If kubeadm is used, then pass --pod-network-cidr=10.244.0.0/16 to kubeadm init to ensure that the podCIDR is set.
+  podSubnet: 10.244.0.0/16 
