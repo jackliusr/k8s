@@ -1,0 +1,59 @@
+= Cluster API quickstart on KIND as Management Cluster and docker as Infrastructure provider
+
+Cluster API quickstart gave instructions to setup a test cluster using kind and docker. However it is clutterd with other options and it's very easy for one to overlook somethings and trapped in the errors for a while. I was trapped in "Error: failed to read "cluster-template.yaml" from provider's repository "infrastructure-docker" for about 2 hours to search for solutions. Here I wrote down my steps to setup the cluster and hope you don't make the same mistakes as me.
+
+Assumed that KIND and docker are already installed on your machine
+
+[source, bash]
+----
+cat > kind-cluster-with-extramounts.yaml <<EOF
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraMounts:
+    - hostPath: /var/run/docker.sock
+      containerPath: /var/run/docker.sock
+EOF
+
+kind create cluster --config kind-cluster-with-extramounts.yaml
+
+curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v0.4.2/clusterctl-linux-amd64 -o clusterctl
+
+chmod +x ./clusterctl
+
+sudo mv ./clusterctl /usr/local/bin/clusterctl
+
+
+#initialize common providers
+clusterctl init --infrastructure docker
+
+
+# The list of service CIDR, default ["10.128.0.0/12"]
+export SERVICE_CIDR=["10.96.0.0/12"]
+
+# The list of pod CIDR, default ["192.168.0.0/16"]
+export POD_CIDR=["192.168.0.0/16"]
+
+# The service domain, default "cluster.local"
+export SERVICE_DOMAIN="k8s.test"
+
+clusterctl generate cluster capi-quickstart --flavor development \
+  --kubernetes-version v1.22.0 \
+  --control-plane-machine-count=3 \
+  --worker-machine-count=3 \
+  > capi-quickstart.yaml
+
+kubectl apply -f capi-quickstart.yaml
+
+
+kubectl --kubeconfig=./capi-quickstart.kubeconfig \
+  apply -f https://docs.projectcalico.org/v3.18/manifests/calico.yaml
+----
+
+
+
+
+
+== Reference
+https://cluster-api.sigs.k8s.io/user/quick-start.html[Cluster API Quickstart]
