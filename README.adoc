@@ -18,15 +18,20 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [*] https://github.com/bitpoke/mysql-operator[mysql operator]
 .. [] postgresql
 .. [] ClickHouse
-. security
+. Security
+.. [] App Armor
+.. [*] Calico: https://courses.academy.tigera.io/certificates/d730f6c4ce6141898a755a29bfa8666e[my certificate] 
 .. [] hsm
 .. [] Trivy
 .. [] Sysdig
 .. [] Falco
-.. [] App Armor
+. Certification management
+.. [*] https://github.com/jetstack/cert-manager[cert-managr]
+.. [*] Let's Encrypt
+.. [*] https://github.com/jackliusr/cert-manager-webhook-godaddy[ACME webhook for GoDaddy]: helm based
 . LMA stack: logging, monitoring and alerting
 .. [*] ECK
-.. [] logstash 
+.. [] logstash: elastic doesn't provide logstash for k8s
 .. [] Fluentd
 .. [] alerting ?
 . application
@@ -34,15 +39,17 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [*] knative
 .. [] tiggermesh
 .. [] tekton, Cloud Native CI/CD, used by knative and triggermesh
+.. [*] fluxcd: one project one instance
+. Secret Management
+.. [] secret management https://github.com/banzaicloud/bank-vaults
+. Kubernetes cloud provider
+.. [*] eksctl
+.. [*] Alibaba Cloud Container Service for Kubernetes (ACK)
+. API gateway, Service Mesh
+.. [*] mesh, basically istio now is the de facto standard. 
+. AI, Big Data, Machine Learning
+.. [] kubeflow: installation
 
-
-Others:
-
-* [*] eksctl
-* [*] mesh, basically istio now is the de facto standard. 
-* [] kubeflow
-* [*] fluxcd
-* [] secret management https://github.com/banzaicloud/bank-vaults
 
 
 == Prerequisites
