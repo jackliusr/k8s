@@ -51,11 +51,13 @@ Docker, kind, kinder, jq, yq, kustomize and helm are installed at your machine
 
 == Usage
 
-wsl2 + docker
+
 [source, bash]
 ----
+#in wsl2 + docker, run following command before start docker service
 sudo mkdir /sys/fs/cgroup/systemd
 sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
+sudo service docker start
 ----
 
 [source,bash]
