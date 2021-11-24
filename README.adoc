@@ -42,6 +42,9 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [*] fluxcd: one project one instance
 . Secret Management
 .. [] secret management https://github.com/banzaicloud/bank-vaults
+.. [*] sealed-secrets
+.. [] External Secrets
+.. [] Secrets Store CSI
 . Kubernetes cloud provider
 .. [*] eksctl
 .. [*] Alibaba Cloud Container Service for Kubernetes (ACK)
