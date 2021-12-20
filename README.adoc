@@ -10,6 +10,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [] kubecfg
 . [*] telepresence
 . [*] skaffold
+. [*] tilt
 . [*] Service catalog
 . [*] gitops argocd
 . [*] link:https://github.com/summerwind/actions-runner-controller[github self-hosted actions-runner for kubernetes]
@@ -40,6 +41,9 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] tiggermesh
 .. [] tekton, Cloud Native CI/CD, used by knative and triggermesh
 .. [*] fluxcd: one project one instance
+. Build
+.. [] bazel
+.. [] Buck
 . Secret Management
 .. [] secret management https://github.com/banzaicloud/bank-vaults
 .. [*] sealed-secrets
