@@ -13,5 +13,7 @@ The worked combination of eks  and istio:
 |1.8.2
 |===
 
-https://github.com/kubeflow/kubeflow/issues/5176
-https://github.com/kubeflow/kubeflow/issues/5313
+Issues: 
+
+* https://github.com/kubeflow/kubeflow/issues/5176
+* https://github.com/kubeflow/kubeflow/issues/5313
