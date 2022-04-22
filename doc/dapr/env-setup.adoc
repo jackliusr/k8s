@@ -1,0 +1,28 @@
+= Dapr 开发环境
+
+Dapr 命令命令等可以在windows 和linux 下执行，但是目前看vscode + bridge 调试只有在windows 测试通过， linux 等测试通过后更新这个文档。 
+
+
+== windows env
+
+choco install -y aws-iam-authenticator
+
+== linux 
+
+== Kubectl
+
+
+
+== dapr plugin and bridge to kubernetes
+
+=== issue: kubenetes plugins: Failed to update dependencies: The "streams" argument must be specified
+
+https://github.com/microsoft/mindaro/issues/32
+
+export BRIDGE_BUILD_PATH=/home/your_username/.config/Code/User/globalStorage/mindaro.mindaro/file-downloader-downloads/binaries
+
+chmod +x /home/jackliusr/.config/Code/User/globalStorage/mindaro.mindaro/file-downloader-downloads/binaries/kubectl/linux/kubectl
+
+=== issue: Failed to refresh the kubeconfig token: Failed to execute: /home/jackliusr/.config/Code/User/globalStorage/mindaro.mindaro/file-downloader-downloads/binaries/bridge refresh-credentials --namespace default. Error: spawn /home/jackliusr/.config/Code/User/globalStorage/mindaro.mindaro/file-downloader-downloads/binaries/bridge ENOENT
+
+没有这个文件
