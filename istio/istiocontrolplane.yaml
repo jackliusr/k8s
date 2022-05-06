@@ -1,0 +1,67 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  name: istiocontrolplane
+  namespace: istio-system
+spec:
+  components:
+    ingressGateways:
+    - name: istio-ingressgateway
+      enabled: true
+      k8s:
+        serviceAnnotations:
+          service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+          service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+          proxy.istio.io/config: '{"gatewayTopology" : { "numTrustedProxies": 1 } }'
+          service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+        service:
+          ports:
+            ## You can add custom gateway ports in user values overrides, but it must include those ports since helm replaces.
+            # Note that AWS ELB will by default perform health checks on the first port
+            # on this list. Setting this to the health check port will ensure that health
+            # checks always work. https://github.com/istio/istio/issues/12503
+            - port: 15021
+              targetPort: 15021
+              name: status-port
+            - port: 80
+              targetPort: 8080
+              name: http2
+            - port: 443
+              targetPort: 8443
+              name: https
+            - port: 3306
+              targetPort: 3306
+              name: mysql
+            - port: 3307
+              targetPort: 3307
+              name: mysql-prod
+            - port: 6379
+              targetPort: 6379
+              name: redis
+            - port: 31400
+              targetPort: 31400
+              name: tcp
+              # This is the port where sni routing happens
+            - port: 15443
+              targetPort: 15443
+              name: tls    
+    pilot:
+      enabled: true
+      k8s:
+        overlays:
+        - kind: Deployment
+          name: istiod
+          patches:
+          - path: spec.template.spec.hostNetwork
+            value: true
+        env:
+        - name: PILOT_HTTP10
+          value: "1"
+  profile: default
