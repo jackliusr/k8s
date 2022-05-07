@@ -1,0 +1,28 @@
+= Kubernetes native  CICD
+
+* tekton
+* **argo workflow**
+* jenkins x
+
+== Comparison Table
+
+[cols="1,1,1,1"]
+|===
+| item
+| tekton
+| argo workflow
+| jenkins x
+
+
+|easy to setup
+| complex
+| easy
+| easy
+
+| UI
+| ok
+| good
+| good
+
+
+|===

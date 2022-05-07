@@ -1,0 +1,4 @@
+== Samples
+
+* https://github.com/microsoft/mindaro/tree/master/samples
+* https://github.com/dapr/quickstarts
