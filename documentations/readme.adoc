@@ -1,0 +1,16 @@
+= Documentation systems
+
+There are serveral markdown documenation systems for software engineering availble in the street.  I tried latex, markdown, AsciiDoc. Latex is too complex and there is no decent render for web, Markdown is quite lax, so I settled down on AsciiDoc for this place on its following features. 
+
+[quote]
+====
+AsciiDoc: Publish presentation-rich content from a concise and comprehensive authoring format.
+====
+
+
+* publisher level consideration 
+* language specification
+
+In the day-to-day communications between me and my colleagues, I still use other format which we all feel comfortable with.
+
+For project documentations, I prefer to Antora over Docsy. In Antora you can easily switch among many version beside other features.
