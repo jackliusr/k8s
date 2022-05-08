@@ -12,7 +12,6 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] skaffold
 . [*] tilt
 . [*] Service catalog
-. [*] gitops argocd
 . [*] link:https://github.com/summerwind/actions-runner-controller[github self-hosted actions-runner for kubernetes]
 . [*] istio, envoyproxy
 . database
@@ -35,11 +34,13 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 .. [] logstash: elastic doesn't provide logstash for k8s
 .. [] Fluentd
 .. [] alerting ?
-. application
+. application cicd
+.. [*] argo-workflow
 .. [] Progressive Delivery--argocd rollouts
 .. [*] knative
+.. [*] gitops argocd
 .. [] tiggermesh
-.. [] tekton, Cloud Native CI/CD, used by knative and triggermesh
+.. [*] tekton, Cloud Native CI/CD, used by knative and triggermesh
 .. [*] fluxcd: one project one instance
 . Build
 .. [] bazel
