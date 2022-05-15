@@ -26,3 +26,49 @@
 
 
 |===
+
+== build docker image
+
+[cols="1,1,1,1,1,1"]
+|===
+|item
+|docker
+|buildkit
+|kaniko
+|Buildah
+|podman
+
+|build with no root or daemon²
+|
+|✅
+|✅
+|
+|
+
+|build multi-architecture
+|
+|✅
+|
+|
+|
+
+|remote layer caching
+|
+|✅
+|✅
+|
+|
+
+|local layer caching
+|
+|✅
+|
+|
+|
+
+|===
+
+
+== Reference: 
+
+* https://stackoverflow.com/a/68395788[What is the difference between Kaniko and BuildKit/Buildx?]
