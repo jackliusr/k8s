@@ -1,0 +1,37 @@
+= flutter
+
+
+== flutter iOS
+
+=== Issues
+
+* file was built for unsupported file format ( 0x76 0x65 0x72 0x73 0x69 0x6F 0x6E 0x20 0x68 0x74 0x74 0x70 0x73 0x3A 0x2F 0x2F ) which is not the architecture being linked
++
+----
+git lfs install
+git lfs ls-files
+----
+*  Cannot find "xcodebuild". Xcode 13 or greater is required to develop for iOS.
++
+----
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -runFirstLaunch
+----
+
+* Not possible (Simulator is using the MacOS networking and not the iOS')
+* How to run CocoaPods on Apple Silicon (M1)
++
+----
+https://stackoverflow.com/a/65334677
+----
+
+
+== flutter android
+
+=== Issues
+* BUG! exception in phase 'semantic analysis' in source unit '_BuildScript_' Unsupported class file major version 62 flutter
++
+----
+run "flutter doctor"
+if everything ok, comment "org.gradle.java.home" in android/gradle.properties
+----
