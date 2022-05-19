@@ -18,7 +18,7 @@ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 sudo xcodebuild -runFirstLaunch
 ----
 
-* Not possible (Simulator is using the MacOS networking and not the iOS')
+* Not possible (Simulator is using the MacOS networking and not the iOS'), xcframeworks
 * How to run CocoaPods on Apple Silicon (M1)
 +
 ----
@@ -34,4 +34,19 @@ https://stackoverflow.com/a/65334677
 ----
 run "flutter doctor"
 if everything ok, comment "org.gradle.java.home" in android/gradle.properties
+----
+
+* flutter - ERROR: Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath
++
+----
+dependencies {
+ implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+}
+https://stackoverflow.com/a/71186533
+----
+
+* Gradle build failed to produce an .apk file. It's likely that this file was generated under ~/prjs/aoxvpn/app/aoxvpn/build, but the tool couldn't find it.
++
+----
+TODO
 ----
