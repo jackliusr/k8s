@@ -48,5 +48,5 @@ https://stackoverflow.com/a/71186533
 * Gradle build failed to produce an .apk file. It's likely that this file was generated under ~/prjs/aoxvpn/app/aoxvpn/build, but the tool couldn't find it.
 +
 ----
-TODO
+https://stackoverflow.com/questions/59732883/flutter-gradle-build-failed-to-produce-an-apk-file-its-likely-that-this-file[There are many cases abouth this kind of issue]. Do it with your due diligence.
 ----
