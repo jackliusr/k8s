@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: cdn
+spec:
+  gateways:
+  - gw
+  hosts:
+  - cdn.example.com
+  http:
+  - headers:
+      response:
+        remove:
+        - Server
+        - x-envoy-upstream-service-time
+    match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: cdn
+        port:
+          number: 80
