@@ -1,0 +1,50 @@
+= Telegram bots in action
+
+== Create a bot
+
+Following the instruction https://core.telegram.org/bots#3-how-do-i-create-a-bot[create a bot] to create a bot, copy the token.
+
+[source,bash]
+----
+export TELEGRAM_BOT_TOKEN=5346022326:AAHSP_hB-Zan6v7yzARBGNzk9XnyaGBPdN4
+----
+
+== Create a public group
+
+
+.  add the bot as admin
+.  add others
+.  find the chat id 
++
+[source,bash]
+----
+curl -X GET \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getUpdates | jq '.result[0].message.chat'
+----
+. send a message to the chat
++
+[source, bash]
+----
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "947421765", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+----
+
+
+== Create a channel
+
+. Create a channel: jackliusr_pub_channel
+. add your bot into the channel
+. add others
+. broadmessae
++
+[source, bash]
+----
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "@jackliusr_pub_channel", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+----     
+
+== ChatOps integration
