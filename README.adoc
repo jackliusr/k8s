@@ -6,6 +6,9 @@ my KIND configurations for different practices
 CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster configrations will be added first.
 
 . [*] kustomize
+. [*] https://github.com/jackliusr/jsonnet-demo[jsonnet]
+. [*] https://github.com/jackliusr/jsonnet-demo[tanka]
+. [*] https://github.com/jackliusr/jsonnet-demo[jsonnet-bundler]
 . [*] helm
 . [] kubecfg
 . [*] telepresence
