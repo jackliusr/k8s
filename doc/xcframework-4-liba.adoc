@@ -1,0 +1,68 @@
+= xcframework for lib a
+
+== Background
+
+I have a static library a in a flutter project without code which targets at iOS. However I want to run the flutter project in iOS simulator. 
+
+https://www.youtube.com/watch?v=40EmwraG4-k[How to Create an XCFramework - Frameworks and Static Libraries
+]
+
+
+
+[source,bash]
+----
+xcodebuild archive \
+  -scheme libaox
+  -archivePath "./archives/ios.xcarchive" \
+  -sdk iphoneos \
+  -SKIP_INSTALL=NO
+
+# https://github.com/voyagegroup/FluctSDK-iOS/issues/6
+xcodebuild archive \
+  -scheme libaox \
+  -derivedDataPath "./builds/simulator" \
+  -arch arm64 \
+  -sdk iphonesimulator 
+----
+
+
+== Tutorial
+
+https://www.appcoda.com/xcframework[A Step by Step Guide on how to Create a XCFramework and Distribute it as a Swift package]
+
+
+
+https://github.com/appcoda/DemoCode[source code]
+
+[source,bash]
+----
+xcodebuild archive \
+-scheme XIBLoadable-iOS \
+-destination "generic/platform=iOS" \
+-archivePath ../output/XIBLoadable-iOS \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+
+xcodebuild archive \
+-scheme XIBLoadable-iOS \
+-destination "generic/platform=iOS Simulator" \
+-archivePath ../output/XIBLoadable-Sim \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+
+xcodebuild archive \
+-scheme XIBLoadable-macOS \
+-destination "generic/platform=OS X" \
+-archivePath ../output/XIBLoadable-macOS \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+
+xcodebuild -create-xcframework \
+-framework ./XIBLoadable-iOS.xcarchive/Products/Library/Frameworks/XIBLoadable_iOS.framework \
+-framework ./XIBLoadable-Sim.xcarchive/Products/Library/Frameworks/XIBLoadable_iOS.framework \
+-framework ./XIBLoadable-macOS.xcarchive/Products/Library/Frameworks/XIBLoadable_macOS.framework \
+-output ./XIBLoadable.xcframework
+----
