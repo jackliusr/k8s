@@ -10,3 +10,27 @@ cert-manager v0.11 is used in kubeflow 1.2.  During setting up the integration c
 kubectl get issuers.cert-manager
 kubectl describe issuers.cert-manager
 ----
+
+== http01 
+
+ingress, clusterissuers, issuers 
+
+[source, yaml]
+----
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-global-qm
+  labels:
+     name: ingress-global-qm
+     use-http01-solver: "true"
+  annotations:
+     cert-manager.io/cluster-issuer: "qmict-test-global-issuer"
+----
+
+== dns01
+
+
+== Reference
+
+* https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes
