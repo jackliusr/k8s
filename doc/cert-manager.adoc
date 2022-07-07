@@ -11,6 +11,13 @@ kubectl get issuers.cert-manager
 kubectl describe issuers.cert-manager
 ----
 
+== ACME matrics
+
+* solver type (http01, dns01)
+* issuer type ( clusterissuer vs issuer)
+* ingress vs gateway
+
+
 == http01 
 
 ingress, clusterissuers, issuers 
