@@ -1,0 +1,6 @@
+= redis
+
+
+== aws elastic redis in k8s
+
+add cluster-ClusterSharedNodeSecurityGroup
