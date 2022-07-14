@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   allow-snippet-annotations: "true"
-  client-max-body-size: 15m
+  client-max-body-size: 100m
   proxy-protocol: "True"
   real-ip-header: proxy_protocol
   set-real-ip-from: 0.0.0.0/0
