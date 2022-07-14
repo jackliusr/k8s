@@ -1,0 +1,14 @@
+= RDS mysql
+
+Assume the master db user is dbadmin, and database is testdb. The best practice is creating an app user appuser
+
+
+[source, sql]
+----
+--run as master user: dbadmin
+CREATE USER 'appuser'@'%' IDENTIFIED BY 'password';
+
+GRANT CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, 
+EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, SELECT, INSERT, UPDATE, DELETE,ALTER ROUTINE, EXECUTE ON testdb.* 
+TO 'appuser'@'%' ;
+----
