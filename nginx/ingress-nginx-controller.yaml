@@ -1,11 +1,11 @@
 apiVersion: v1
 data:
   allow-snippet-annotations: "true"
-  client-max-body-size: 100m
+  client-max-body-size: 100M
+  proxy-body-size: 100M
   proxy-protocol: "True"
   real-ip-header: proxy_protocol
   set-real-ip-from: 0.0.0.0/0
-# ref: https://docs.nginx.com/nginx/deployment-guides/amazon-web-services/ingress-controller-elastic-kubernetes-services/#using-nlb-in-front-of-the-nginx-plus-ingress-controller
 kind: ConfigMap
 metadata:
   labels:
