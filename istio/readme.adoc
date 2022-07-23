@@ -3,3 +3,5 @@
 https://jackliusr.github.io/posts/2021/08/apply-proxy-protocol-listener-filters-to-specific-ports-in-istio/[Apply proxy protocol listener filters to specific ports in istio]
 
 https://www.linkedin.com/pulse/istio-envoy-passthrough-goes-wrong-when-port-80-used-smtp-liu-/[Istio Envoy passthrough goes wrong when port 80 are used for SMTP protocol instead of standard ports]
+
+https://jackliusr.github.io/posts/2022/06/istio-troubleshooting-in-new-scenario-that-one-service-to-expose-into-multiple-domains-and-multiple-ingress-gateways/[one service to expose into multiple domains and multiple ingress gateways]
