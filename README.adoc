@@ -65,7 +65,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 
 == Prerequisites
 
-Docker, kind, kinder, jq, yq, kustomize and helm are installed at your machine
+Docker, kind, https://github.com/kubernetes/kubeadm/tree/main/kinder[kinder], jq, yq, kustomize and helm are installed at your machine
 
 == Usage
 
