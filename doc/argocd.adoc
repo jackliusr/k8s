@@ -1,5 +1,7 @@
 = Argo CD
 
+
+== setup
 https://argoproj.github.io/argo-cd/getting_started/
 [source,bash]
 ----
@@ -8,3 +10,30 @@ kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut
 export ARGOCD_OPTS='--port-forward-namespace argocd'
 argocd login argocd-server-6dccb8-qm --port-forward
 ----
+
+
+== prformance tuning
+
+https://github.com/argoproj/argo-cd/issues/3282
+
+Some guidelines:
+----
+the more clusters which are managed == more memory/cpu needed by controller.
+
+If the ratio between apps to repositories is too high, then increase repo server replicas because there is a mutex held on a repository URL during git operations (fetch/cloning).
+
+
+the repo server may need more memory depending on if your apps are jsonnet/kustomize based vs. raw yaml. This is because it will invoke those tools to render manifests. Jsonnet is notoriously memory hungry.
+
+I suggest monitoring cpu/memory of the controller to come up with right sizing. It will vary depending on the number of clusters, apps. Some of our examples at time of writing:
+
+One Argo CD instance is managing 104 clusters, 140 apps, and currently is using 5 GiB memory and 1.25 CPU
+Another instance is managing 27 clusters, has 1000 apps, and is currently using 1.2 GiB memory and 0.6 CPU
+----
+
+the clusters with more namespaces per application-set take a much longer time to sync. We've started to *create application-set and app-project for each namespace*. This has shown slightly faster syncing functionality.
+
+
+=== Scaling Up
+
+https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/#scaling-up
