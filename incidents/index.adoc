@@ -1,0 +1,17 @@
+= Incident reports and post-mortems
+
+
+Before last week, I thought I mastered kubernetes and pretty sure I was good at it. I reached a plateau and didn't know how to reach another level. I doubted myself after several discussions with experts in the feilds.   The in-depth knowledge of kubernetes day2 issues sparked my interests and found the other way  to improve my knowledge-- learning from failures. Maybe it is the best to learn and master a new skill from failures. 
+
+
+Followed the thought, I found https://k8s.af/[Kubernetes Failure Stories]. I read all the failure stories in https://k8s.af/[Kubernetes Failure Stories] and tracked my reading in https://docs.google.com/spreadsheets/d/e/2PACX-1vRvJoExR7OQACsJT62A5cD29igtFB2nMlHIvaY9EgPsJnozvLlDZVDGh8nJBuC4Vzggwihmif8vqA8r/pubhtml[Kubernetes Failure Stories Reading List].
+
+There are more incidents and post-mortems in the internet than in https://k8s.af/[Kubernetes Failure Stories]. I put other here for my reading and references.
+
+
+* https://github.com/dfds/postmortems
+* https://github.com/betatim/mybinder.org-deploy/tree/master/docs/source/incident-reports
+* https://gitlab.com/groups/gitlab-com/gl-infra/-/issues
+
+
+
