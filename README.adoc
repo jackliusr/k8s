@@ -16,14 +16,15 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . [*] tilt
 . [*] Service catalog
 . [*] link:https://github.com/summerwind/actions-runner-controller[github self-hosted actions-runner for kubernetes]
-. [*] istio, envoyproxy
+. [*] Istio : https://www.credly.com/badges/db79c972-c8b9-4f41-9670-36103c6c125c[Fundamentals for Istio by Solo.io], https://www.credly.com/badges/7076492d-2b6a-4e02-8e48-ba0b43e13771/linked_in?t=rkd72n[Intermediate for Istio by Solo.io], https://www.credly.com/badges/379005e5-b844-4ba1-be97-3955a4b59881[Fundamentals for Istio Ambient Mesh by Solo.io]
+. [*] envoyproxy: https://tetrate-academy.thinkific.com/certificates/m1tlwlf1pm[Envoy Fundamentals], https://www.credly.com/earner/earned/badge/61af97aa-e468-47a1-b3c7-48907b0b8e2b[Fundamentals for Envoy by Solo.io]
 . database
 .. [*] https://github.com/bitpoke/mysql-operator[mysql operator]
 .. [] postgresql
 .. [] ClickHouse
 . Security
 .. [] App Armor
-.. [*] Calico: https://courses.academy.tigera.io/certificates/d730f6c4ce6141898a755a29bfa8666e[my certificate] 
+.. [*] Calico: https://courses.academy.tigera.io/certificates/d730f6c4ce6141898a755a29bfa8666e[CERTIFIED CALICO OPERATOR: LEVEL 1], https://courses.academy.tigera.io/certificates/79c587fc56724eb3ab452104803f6a8f[CERTIFIED CALICO OPERATOR: AWS EXPERT]
 .. [] hsm
 .. [] Trivy
 .. [] Sysdig
@@ -95,6 +96,10 @@ up.sh will call kind with the cluster configuration to create the cluster if the
 == Clusters
 
 link:doc/cluster.adoc[Clusters and their configuration features and purposes]
+
+== Incident Reports or Post-mortems
+
+- link:incidents/index.adoc[Incident Reports or Post-mortems]
 
 == Labs
 
