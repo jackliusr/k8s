@@ -1,1 +1,0 @@
-4nodes-hook.sh
