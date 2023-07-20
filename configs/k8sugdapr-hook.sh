@@ -28,3 +28,6 @@ metadata:
   name: empty
   namespace: metallb-system
 EOF
+
+dapr init -k
+kubectl create ns todo-app
