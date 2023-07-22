@@ -1,2 +1,5 @@
-ca.key
-ca.crt
+*.key
+*.crt
+*.csr
+ca.srl
+configs/etcd/openssl/*.txt
