@@ -1,0 +1,38 @@
+mkdir root-ca
+cd root-ca
+cat << EOF > root-ca-config.json
+{
+    "signing": {
+        "profiles": {
+            "intermediate": {
+                "usages": [
+                    "signature",
+                    "digital-signature",
+                    "cert sign",
+                    "crl sign"
+                ],
+                "expiry": "26280h",
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                }
+            }
+        }
+    }
+}
+EOF
+cat << EOF > root-ca-csr.json
+{
+    "CN": "my-root-ca",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "ca": {
+        "expiry": "87600h"
+    }
+}
+EOF
+cfssl genkey -initca root-ca-csr.json | cfssljson -bare ca
+cd ..
