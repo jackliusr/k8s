@@ -1,0 +1,19 @@
+{
+    "CN": "kube-etcd-healthcheck-client",
+    "hosts": [
+        "127.0.0.1",
+        "0:0:0:0:0:0:0:1",
+        "172.18.0.2",
+        "kind-worker"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "_comment": "/O=system:masters/CN=kube-etcd-healthcheck-client",
+    "names": [
+        {
+            "O": "system:masters"
+        }
+    ]
+}

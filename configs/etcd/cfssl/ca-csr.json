@@ -1,0 +1,15 @@
+{
+    "CN": "etcd-ca",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "hosts": [
+        "etcd-ca"
+    ],
+    "usages": [
+        "signing",
+        "key encipherment",
+        "cert sign"
+    ]
+}
