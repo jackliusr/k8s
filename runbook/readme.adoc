@@ -1,7 +1,0 @@
-= runbooks for kubernete systems.
-:icons: font
-
-
-== References: 
-
-* https://github.com/prometheus-operator/runbooks

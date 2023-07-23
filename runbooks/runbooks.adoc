@@ -9,3 +9,5 @@ https://runbooks.prometheus-operator.dev/
 
 https://github.com/ContainerSolutions/runbooks
 
+
+https://github.com/prometheus-operator/runbooks
