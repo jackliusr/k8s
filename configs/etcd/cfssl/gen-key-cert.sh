@@ -10,10 +10,12 @@ curl -L https://github.com/cloudflare/cfssl/releases/download/v1.5.0/cfssl-certi
 chmod +x cfssl-certinfo
 mv cfssl* /usr/local/bin
 
-IP=$(hostname -i |sed 's/[^ ]* //')
+export IP=$(hostname -i |sed 's/[^ ]* //')
 
-sh -c "sed -i -e 's/172.18.0.2/IP/g' server-csr.json"
-sh -c "sed -i -e 's/172.18.0.2/IP/g' healthcheck-client-csr.json"
+sh -c "sed -i -e 's/172.18.0.2/${IP}/g' server-csr.json"
+sh -c "sed -i -e 's/172.18.0.2/${IP}/g' healthcheck-client-csr.json"
+
+cp ca.crt /etc/kubernetes/pki/etcd/ca.crt
 
 cfssl gencert -ca=ca.crt -ca-key=ca.key \
      --config=ca-config.json -profile=server \
@@ -32,3 +34,7 @@ cfssl gencert -ca=ca.crt -ca-key=ca.key \
      healthcheck-client-csr.json | cfssljson -bare healthcheck-client
 mv healthcheck-client-key.pem /etc/kubernetes/pki/etcd/healthcheck-client.key
 mv healthcheck-client.pem /etc/kubernetes/pki/etcd/healthcheck-client.crt
+
+
+sh -c "sed -i -e 's/${IP}/172.18.0.2/g' server-csr.json"
+sh -c "sed -i -e 's/${IP}/172.18.0.2/g' healthcheck-client-csr.json"
