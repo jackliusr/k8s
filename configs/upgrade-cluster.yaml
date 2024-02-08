@@ -2,27 +2,27 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
-  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  image: kindest/node:v1.28.6@sha256:299852461cfe4b68212b479557cdcf1d059ce2394631814b41b5ddf6eb71fff4
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs
 - role: control-plane
-  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  image: kindest/node:v1.28.6@sha256:299852461cfe4b68212b479557cdcf1d059ce2394631814b41b5ddf6eb71fff4
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs
 - role: control-plane
-  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  image: kindest/node:v1.28.6@sha256:299852461cfe4b68212b479557cdcf1d059ce2394631814b41b5ddf6eb71fff4
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
-  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  image: kindest/node:v1.28.6@sha256:299852461cfe4b68212b479557cdcf1d059ce2394631814b41b5ddf6eb71fff4
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
-  image: kindest/node:v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
+  image: kindest/node:v1.28.6@sha256:299852461cfe4b68212b479557cdcf1d059ce2394631814b41b5ddf6eb71fff4
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs

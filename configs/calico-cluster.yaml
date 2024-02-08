@@ -2,14 +2,14 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
-  image: kindest/node:v1.22.0@sha256:b8bda84bb3a190e6e028b1760d277454a72267a5454b57db34437c34a588d047
+  image: kindest/node:v1.29.1@sha256:aa49c4486220dc6b4ea7749407fb2ab95a50fdea155e760b3589a2a4699c0741
   extraMounts:
   - hostPath: ./configs
     containerPath: /mnt/configs
 - role: worker
-  image: kindest/node:v1.22.0@sha256:b8bda84bb3a190e6e028b1760d277454a72267a5454b57db34437c34a588d047
+  image: kindest/node:v1.29.1@sha256:aa49c4486220dc6b4ea7749407fb2ab95a50fdea155e760b3589a2a4699c0741
 - role: worker
-  image: kindest/node:v1.22.0@sha256:b8bda84bb3a190e6e028b1760d277454a72267a5454b57db34437c34a588d047
+  image: kindest/node:v1.29.1@sha256:aa49c4486220dc6b4ea7749407fb2ab95a50fdea155e760b3589a2a4699c0741
 networking:
   # ref  https://alexbrand.dev/post/creating-a-kind-cluster-with-calico-networking/
   # after the creation of the cluster, run kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml

@@ -8,7 +8,7 @@ networks:
 services:
   etcd1:
     hostname: etcd1 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -29,7 +29,7 @@ services:
         read_only: true
   etcd2:
     hostname: etcd2 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -50,7 +50,7 @@ services:
         read_only: true
   etcd3:
     hostname: etcd3 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined

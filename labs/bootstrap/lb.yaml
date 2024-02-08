@@ -20,7 +20,7 @@ services:
         ipv4_address: 172.19.0.100
   master1:
     hostname: master1
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -51,7 +51,7 @@ services:
         read_only: true
   master2:
     hostname: master2
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -84,7 +84,7 @@ services:
         read_only: true
   master3:
     hostname: master3
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -117,7 +117,7 @@ services:
         read_only: true
   worker1:
     hostname: worker1
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -140,7 +140,7 @@ services:
         read_only: true
   worker2:
     hostname: worker2
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined

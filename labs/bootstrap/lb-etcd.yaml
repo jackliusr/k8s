@@ -8,7 +8,7 @@ networks:
 services:
   etcd1:
     hostname: etcd1 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -29,7 +29,7 @@ services:
         read_only: true
   etcd2:
     hostname: etcd2 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -50,7 +50,7 @@ services:
         read_only: true
   etcd3:
     hostname: etcd3 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -87,7 +87,7 @@ services:
         ipv4_address: 172.19.0.100
   kind-control-plane:
     hostname: kind-control-plane 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -122,7 +122,7 @@ services:
         read_only: true
   kind-control-plane2:
     hostname: kind-control-plane2 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -155,7 +155,7 @@ services:
         read_only: true
   kind-control-plane3:
     hostname: kind-control-plane3 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
@@ -188,7 +188,7 @@ services:
         read_only: true
   worker1:
     hostname: worker1
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined
@@ -211,7 +211,7 @@ services:
         read_only: true
   worker2:
     hostname: worker2
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     privileged: true
     security_opt:
     - seccomp:unconfined

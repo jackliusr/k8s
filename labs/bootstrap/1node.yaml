@@ -8,7 +8,7 @@ networks:
 services:
   kind-control-plane:
     hostname: kind-control-plane 
-    image: "kindest/node:v1.19.4"
+    image: "kindest/node:v1.29.1"
     labels:
       io.x-k8s.kind.role: control-plane 
     privileged: true
