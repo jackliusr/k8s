@@ -3,4 +3,5 @@
 *.csr
 *.pem
 ca.srl
+.vscode
 configs/etcd/openssl/*.txt
