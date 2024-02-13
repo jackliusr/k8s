@@ -1,5 +1,5 @@
 #!/bin/bash 
-kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/calico.yaml
 kubectl -n kube-system set env daemonset/calico-node FELIX_IGNORELOOSERPF=true
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
