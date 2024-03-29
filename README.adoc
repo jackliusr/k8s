@@ -49,6 +49,7 @@ CKA, CKAD and CKS test environment support calico and flannel. The KIND cluster 
 . Build
 .. [*] bazel
 .. [] Buck
+.. [] BuildXL
 . Secret Management
 .. [] secret management https://github.com/banzaicloud/bank-vaults
 .. [*] sealed-secrets
