@@ -1,8 +1,4 @@
 #!/bin/bash
-docker exec -d kind-control-plane /mnt/cni/cni-install.sh
-docker exec -d kind-worker/mnt/cni/cni-install.sh
-docker exec -d kind-worker2 /mnt/cni/cni-install.sh
-
 helm upgrade --install --namespace kube-system --repo https://helm.cilium.io cilium cilium --values - <<EOF
 kubeProxyReplacement: strict
 k8sServiceHost: kind-control-plane
