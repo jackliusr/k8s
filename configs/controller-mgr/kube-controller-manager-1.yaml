@@ -5,7 +5,7 @@ metadata:
   labels:
     component: kube-controller-manager
     tier: control-plane
-  name: kube-controller-manager-1
+  name: kube-controller-manager
   namespace: kube-system
 spec:
   containers:
@@ -20,7 +20,7 @@ spec:
     - --cluster-name=kind
     - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
     - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
-    - --controllers=bootstrapsigner,certificatesigningrequestapproving,certificatesigningrequestcleaner,certificatesigningrequestsigning,cloudnodelifecycle,clusterroleaggregation,cronjob,daemonset,deployment,disruption,endpoints,endpointslice,endpointslicemirroring,ephemeralvolume
+    - --controllers=*,-job-controller,cronjob-controller
     - --enable-hostpath-provisioner=true
     - --kubeconfig=/etc/kubernetes/controller-manager.conf
     - --leader-elect=true
@@ -29,7 +29,7 @@ spec:
     - --service-account-private-key-file=/etc/kubernetes/pki/sa.key
     - --service-cluster-ip-range=10.96.0.0/16
     - --use-service-account-credentials=true
-    - --leader-elect-resource-name=kube-controller-manager-1
+    - --leader-elect-resource-name=kube-controller-manager
     image: registry.k8s.io/kube-controller-manager:v1.29.1
     imagePullPolicy: IfNotPresent
     livenessProbe:

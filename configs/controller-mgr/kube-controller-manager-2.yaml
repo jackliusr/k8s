@@ -20,7 +20,7 @@ spec:
     - --cluster-name=kind
     - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
     - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
-    - --controllers=garbagecollector,horizontalpodautoscaler,job,legacyserviceaccounttokencleaner,namespace,nodeipam,nodelifecycle,noderoute,persistentvolumeattachdetach,persistentvolumebinder,persistentvolumeexpander,persistentvolumeprotection,persistentvolumeclaimprotection,podgarbagecollector
+    - --controllers=cronjob-controller
     - --enable-hostpath-provisioner=true
     - --kubeconfig=/etc/kubernetes/controller-manager.conf
     - --leader-elect=true

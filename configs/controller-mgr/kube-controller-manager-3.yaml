@@ -20,7 +20,7 @@ spec:
     - --cluster-name=kind
     - --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
     - --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
-    - --controllers=replicaset,replicationcontroller,resourceclaim,resourcequota,rootcacertificatepublisher,servicecidr,servicelb,serviceaccount,serviceaccounttoken,statefulset,storageversionmigrator,storageversiongarbagecollector,tainteviction,tokencleaner,ttlafterfinished,ttl,validatingadmissionpolicystatus
+    - --controllers=job-controller
     - --enable-hostpath-provisioner=true
     - --kubeconfig=/etc/kubernetes/controller-manager.conf
     - --leader-elect=true

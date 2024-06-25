@@ -8,3 +8,8 @@ docker exec kind-control-plane2 rm /etc/kubernetes/manifests/kube-controller-man
 
 docker cp ./configs/controller-mgr/kube-controller-manager-3.yaml kind-control-plane3:/etc/kubernetes/manifests/kube-controller-manager-3.yaml
 docker exec kind-control-plane3 rm /etc/kubernetes/manifests/kube-controller-manager.yaml
+
+kubectl apply -f ./configs/controller-mgr/lease2.yaml
+kubectl apply -f ./configs/controller-mgr/lease3.yaml
+kubectl apply -f ./configs/controller-mgr/system\:\:leader-locking-kube-controller-manager.yaml
+kubectl apply -f ./configs/controller-mgr/cluster-role-kube-controller-manager.yaml
